@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV &amp; Biodata Maker — Free Bangla &amp; English CV, Resume and Marriage Biodata Generator</title>
+<meta name="description" content="Free CV and biodata maker in Bangla and English. 40 templates, 15 layouts and 30 colour themes. Export to PDF, PNG or JPG. Your data stays in your browser.">
+<meta name="keywords" content="CV maker, resume builder, biodata maker, marriage biodata, Bangla CV, free CV template, বায়োডাটা, সিভি">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4f46e5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CV &amp; Biodata Maker — Bangla &amp; English">
+<meta property="og:description" content="Build a job CV or marriage biodata in minutes. 40 templates, live A4 preview, PDF/PNG/JPG export. Nothing is uploaded.">
+<meta name="twitter:card" content="summary">
+
+<!-- Google Fonts: UI font (Inter), Bangla (Hind Siliguri), and the 12 design font pairings.
+     Fallbacks for every stack are defined in the JavaScript (section 7.2). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Lato:wght@400;700&family=Poppins:wght@400;600;700&family=Nunito:wght@400;600;700&family=Lora:wght@400;600;700&family=Roboto:wght@400;500;700&family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;600;700&family=Raleway:wght@400;600;700;800&family=Source+Serif+4:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Karla:wght@400;600;700&family=Tiro+Bangla&family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================================
+   1. DESIGN TOKENS & BASE (app chrome — not the A4 paper)
+   ========================================================================= */
+:root {
+  --bg: #f1f5f9;
+  --panel: #ffffff;
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --input-line: #cbd5e1;
+  --accent: #4f46e5;
+  --accent-ink: #3730a3;
+  --accent-soft: #eef2ff;
+  --danger: #dc2626;
+  --radius: 14px;
+  --topbar-h: 64px;
+  --footer-h: 36px;
+  --font: 'Inter', 'Hind Siliguri', 'Noto Sans Bengali', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; font-family: var(--font); font-size: 15px; color: var(--ink);
+  background: var(--bg); -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+/* =========================================================================
+   2. TOP BAR (brand, mode switch, actions)
+   ========================================================================= */
+.topbar {
+  position: sticky; top: 0; z-index: 20; min-height: var(--topbar-h);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 10px 16px; padding: 10px 16px;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo {
+  width: 34px; height: 34px; border-radius: 10px; color: #fff; display: grid; place-items: center;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed); font-weight: 800; font-size: 15px;
+}
+.brand h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.brand small { display: block; color: var(--muted); font-size: 12px; }
+
+.mode-switch { display: inline-flex; padding: 4px; gap: 4px; background: #e2e8f0; border-radius: 999px; }
+.mode-switch button {
+  border: 0; background: transparent; padding: 8px 14px; border-radius: 999px;
+  font-weight: 600; font-size: 14px; color: var(--ink-2); transition: background .2s, color .2s;
+}
+.mode-switch button[aria-pressed="true"] { background: #fff; color: var(--accent-ink); box-shadow: 0 1px 3px rgba(15,23,42,.15); }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Buttons */
+.btn {
+  border: 1px solid var(--input-line); background: #fff; color: var(--ink-2);
+  padding: 8px 14px; border-radius: 10px; font-weight: 600; font-size: 14px;
+  transition: background .15s, border-color .15s, transform .05s;
+}
+.btn:hover { background: #f8fafc; border-color: #94a3b8; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+.btn-add { width: 100%; border-style: dashed; color: var(--accent-ink); background: var(--accent-soft); border-color: #a5b4fc; }
+.btn-add:hover { background: #e0e7ff; }
+.link-btn { background: none; border: 0; padding: 4px 6px; font-size: 13px; font-weight: 600; color: var(--accent-ink); }
+.link-btn.danger { color: var(--danger); }
+
+/* =========================================================================
+   3. APP LAYOUT (mobile: tabs; desktop: split view)
+   ========================================================================= */
+.view-tabs {
+  position: sticky; top: var(--topbar-h); z-index: 15; display: grid; grid-template-columns: 1fr 1fr;
+  background: #fff; border-bottom: 1px solid var(--line);
+}
+.view-tabs button {
+  border: 0; background: none; padding: 12px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent;
+}
+.view-tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+
+.workspace { display: block; }
+.panel-form { padding: 16px; }
+.panel-preview { padding: 16px; background: #e2e8f0; }
+body[data-view="edit"] .panel-preview { display: none; }
+body[data-view="preview"] .panel-form { display: none; }
+
+@media (min-width: 960px) {
+  .view-tabs { display: none; }
+  .workspace { display: grid; grid-template-columns: minmax(380px, 44%) 1fr; height: calc(100vh - var(--topbar-h) - var(--footer-h)); }
+  .panel-form, .panel-preview { overflow-y: auto; }
+  .panel-form { padding: 20px 20px 40px; border-right: 1px solid var(--line); background: var(--bg); }
+  .panel-preview { padding: 24px; }
+  body[data-view] .panel-form, body[data-view] .panel-preview { display: block; }
+}
+
+/* =========================================================================
+   4. FORM UI (cards, fields, lists, tags, photo uploader, design panel)
+   ========================================================================= */
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 14px; }
+.card h2 { margin: 0 0 12px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.span-2 { grid-column: 1 / -1; }
+
+.field { display: block; min-width: 0; }
+.field > span { display: block; font-size: 13px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+.field input:not([type="range"]), .field textarea, .field select {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--input-line); border-radius: 10px;
+  background: #fff; font-size: 15px; line-height: 1.4; transition: border-color .15s, box-shadow .15s;
+}
+.field textarea { resize: vertical; min-height: 78px; }
+.field input:focus, .field textarea:focus, .field select:focus, .skill-input:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,.18);
+}
+.field input[type="range"] { width: 100%; accent-color: var(--accent); margin: 6px 0 0; }
+.field output { float: right; font-weight: 700; color: var(--accent-ink); }
+.hint { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+
+.item-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 12px; background: #fcfcfd; }
+.item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.item-head span { font-size: 13px; font-weight: 700; color: var(--muted); }
+
+.tag-box {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  border: 1px solid var(--input-line); border-radius: 10px; padding: 8px; background: #fff;
+}
+.tag-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,.18); }
+.skill-input { flex: 1 1 140px; min-width: 120px; border: 0; padding: 4px; outline: none; background: transparent; }
+.chip {
+  display: inline-flex; align-items: center; gap: 4px; background: var(--accent-soft); color: var(--accent-ink);
+  padding: 4px 4px 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600;
+}
+.chip button {
+  border: 0; background: rgba(79,70,229,.12); color: var(--accent-ink); width: 22px; height: 22px;
+  border-radius: 50%; line-height: 1; font-size: 15px;
+}
+
+.photo-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.photo-box {
+  width: 96px; height: 120px; border-radius: 12px; border: 2px dashed #94a3b8; background: #f8fafc;
+  display: grid; place-items: center; overflow: hidden; color: var(--muted); font-size: 12px; text-align: center; flex: 0 0 auto;
+}
+.photo-box img { width: 100%; height: 100%; object-fit: cover; }
+.photo-controls { display: flex; flex-direction: column; gap: 8px; }
+.file-btn {
+  display: inline-block; padding: 9px 14px; border-radius: 10px; background: var(--accent); color: #fff;
+  font-weight: 600; font-size: 14px; cursor: pointer; width: max-content;
+}
+.file-btn:hover { background: var(--accent-ink); }
+.file-btn input { display: none; }
+
+/* Design panel (section 4b) */
+.design-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.design-head h2 { margin: 0; }
+.count { font-size: 13px; color: var(--muted); }
+.count strong { display: block; font-size: 20px; color: var(--accent-ink); font-variant-numeric: tabular-nums; text-align: right; }
+.design-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .design-grid { grid-template-columns: 1fr 1fr; } }
+.sel-row { display: flex; gap: 8px; align-items: center; }
+.sel-row select { flex: 1; min-width: 0; }
+.swatches { display: flex; gap: 3px; flex: 0 0 auto; }
+.swatches i { display: block; width: 12px; height: 30px; border-radius: 4px; }
+.design-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.design-actions .hint { margin: 0 0 0 auto; }
+
+/* =========================================================================
+   5. PREVIEW PANEL (A4 paper shell)
+   ========================================================================= */
+.preview-wrap { max-width: 794px; margin: 0 auto; }
+.overflow-note {
+  background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; border-radius: 10px;
+  padding: 8px 12px; font-size: 13px; margin-bottom: 12px;
+}
+.paper-shell { width: 100%; }
+
+/* A4 = 210 x 297 mm -> aspect-ratio 210 / 297 (exact at any width).
+   container-type lets every size use cqw, so the whole page scales with its width. */
+.paper {
+  /* theme + font tokens (filled in by JavaScript, section 7.6) */
+  --accent: #4f46e5; --dark: #1e1b4b; --soft: #eef2ff; --tint: #f7f8fe; --line-accent: #c7d2fe;
+  --on-dark: #f8fafc; --on-dark-muted: #cbd5e1; --on-dark-accent: #c7d2fe;
+  --f-head: 'Inter', 'Hind Siliguri', sans-serif; --f-body: 'Inter', 'Hind Siliguri', sans-serif; --fw-head: 700;
+  /* scale factors: user slider x auto-fit (set by JavaScript) */
+  --fs: 1; --sp: 1;
+  --margin: 13.5mm;
+  --pad: var(--margin);
+
+  position: relative; box-sizing: border-box; width: 210mm; height: 297mm; overflow: hidden;
+  background: #fff; color: var(--ink); container-type: inline-size;
+  box-shadow: 0 10px 30px rgba(15,23,42,.18), 0 1px 3px rgba(15,23,42,.1);
+  overflow-wrap: anywhere; word-break: normal;
+}
+.ph-txt, .ph { color: #94a3b8; font-style: italic; }
+.bn { font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: .85em; }
+
+/* The grid container for the paper's five regions */
+.doc {
+  position: absolute; left: 0; top: var(--doc-top, 0px); width: 100%; box-sizing: border-box;
+  z-index: 1; display: grid; align-content: start;
+  font-family: var(--f-body); font-size: calc(1.9cqw * var(--fs)); line-height: 1.5; color: var(--ink);
+  grid-template-columns: 1fr;
+}
+/* Five regions: hd (header), pic (photo), ft (facts), sd (side), mn (main).
+   Layouts (section 5b) only decide where these five regions go. */
+.hd, .pic, .ft, .sd, .mn { min-width: 0; margin: 0; padding: var(--pad); }
+.hd { grid-area: hd; }
+.pic { grid-area: pic; position: relative; }
+.ft { grid-area: ft; }
+.sd { grid-area: sd; }
+.mn { grid-area: mn; }
+.sd:empty { display: none; }
+
+/* ---- Header text ---- */
+.nm { margin: 0; font-family: var(--f-head); font-weight: var(--fw-head); font-size: calc(6.2cqw * var(--fs)); line-height: 1.12; letter-spacing: -.01em; color: var(--ink); }
+.sub { margin: calc(1.2cqw * var(--sp)) 0 0; font-size: calc(2.4cqw * var(--fs)); font-weight: 600; color: var(--accent); }
+.mono { display: none; }
+
+/* ---- Facts (contact / personal details) ---- */
+.ft { display: grid; grid-template-columns: 1fr; gap: calc(2.2cqw * var(--sp)); }
+.fact dt { font-size: calc(1.45cqw * var(--fs)); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.fact dd { margin: .3cqw 0 0; font-size: calc(1.85cqw * var(--fs)); color: var(--ink); }
+.row-ft .ft { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24cqw), 1fr)); column-gap: 4cqw; }
+
+/* ---- Photo (3 shapes) ---- */
+.photo {
+  width: calc(24cqw * var(--fs)); max-width: 100%; aspect-ratio: 4 / 5; overflow: hidden;
+  background: var(--soft); border: .25cqw solid var(--line-accent); display: grid; place-items: center;
+  color: var(--muted); font-size: calc(1.6cqw * var(--fs));
+}
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .ini { font-family: var(--f-head); font-size: calc(7cqw * var(--fs)); font-weight: var(--fw-head); color: var(--accent); }
+.sh-circle { aspect-ratio: 1; border-radius: 50%; }
+.sh-rounded { border-radius: 3cqw; }
+.sh-square { border-radius: 0; }
+
+/* ---- Section titles (4 styles) ---- */
+.sec { margin-bottom: calc(4.2cqw * var(--sp)); }
+.sec:last-child { margin-bottom: 0; }
+.sec-t {
+  margin: 0 0 calc(2.2cqw * var(--sp)); font-family: var(--f-head); font-weight: 700; font-size: calc(2.1cqw * var(--fs));
+  line-height: 1.25; text-transform: uppercase; letter-spacing: .12em; color: var(--accent);
+}
+.st-underline .sec-t { padding-bottom: calc(1cqw * var(--sp)); border-bottom: .3cqw solid var(--line-accent); }
+.st-pill .sec-t { display: inline-block; background: var(--soft); color: var(--accent); padding: .9cqw 2.2cqw; border-radius: 99px; }
+.st-leftbar .sec-t { border-left: 1.1cqw solid var(--accent); padding-left: 2cqw; letter-spacing: .1em; }
+.st-plain .sec-t { letter-spacing: .14em; }
+
+/* ---- Text blocks, entries, chips ---- */
+.txt, .entry p { margin: 0; font-size: calc(1.85cqw * var(--fs)); color: var(--ink-2); line-height: 1.55; }
+.entry { margin-bottom: calc(3.2cqw * var(--sp)); }
+.entry:last-child { margin-bottom: 0; }
+.entry-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0 2cqw; }
+.entry-top strong { font-family: var(--f-head); font-weight: 700; font-size: calc(2.1cqw * var(--fs)); color: var(--ink); }
+.when { color: var(--muted); font-size: calc(1.7cqw * var(--fs)); white-space: nowrap; }
+.entry-sub { font-size: calc(1.9cqw * var(--fs)); font-weight: 600; color: #475569; margin: .2cqw 0 calc(.8cqw * var(--sp)); }
+.entry p { font-size: calc(1.8cqw * var(--fs)); margin-top: calc(.5cqw * var(--sp)); }
+.chips { display: flex; flex-wrap: wrap; gap: 1cqw; }
+.chips span {
+  display: inline-block; background: var(--soft); color: var(--ink); padding: .6cqw 1.6cqw;
+  border-radius: 99px; font-size: calc(1.65cqw * var(--fs));
+}
+
+/* =========================================================================
+   5b. LAYOUTS (15) — each sets grid-template-areas for the five regions
+   ========================================================================= */
+.lay-single .doc   { grid-template-columns: 1fr auto; grid-template-areas: "hd pic" "ft ft" "mn mn" "sd sd"; }
+.lay-left .doc     { grid-template-columns: 34% 1fr; grid-template-areas: "pic hd" "ft mn" "sd mn"; }
+.lay-right .doc    { grid-template-columns: 1fr 34%; grid-template-areas: "hd pic" "mn ft" "mn sd"; }
+.lay-split .doc    { grid-template-columns: 1fr 1fr; grid-template-areas: "hd hd" "pic ft" "mn sd"; }
+.lay-split .sd     { border-left: .25cqw solid var(--line); }
+.lay-banner .doc   { grid-template-columns: 1fr 1fr; grid-template-areas: "hd hd" "pic ft" "mn mn" "sd sd"; }
+.lay-banner .sd    { display: grid; grid-template-columns: 1fr 1fr; column-gap: 4cqw; }
+.lay-banner .hd    { background: var(--dark); color: var(--on-dark); padding-bottom: calc(12cqw * var(--sp)); }
+.lay-banner .nm    { color: #fff; }
+.lay-banner .sub   { color: var(--on-dark-accent); }
+.lay-banner .pic   { margin-top: calc(-1 * var(--pad) - 5cqw * var(--sp)); }
+.lay-timeline .doc { grid-template-columns: 1fr auto; grid-template-areas: "hd pic" "ft ft" "mn mn" "sd sd"; }
+.lay-timeline .entry { position: relative; margin-left: 1cqw; padding-left: 4cqw; border-left: .3cqw solid var(--line-accent); }
+.lay-timeline .entry::before {
+  content: ""; position: absolute; left: -1.25cqw; top: .6cqw; width: 2.2cqw; height: 2.2cqw;
+  border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 .5cqw #fff;
+}
+.lay-cards .doc   { grid-template-columns: 1fr 1fr; grid-template-areas: "hd hd" "pic ft" "mn mn" "sd sd"; background: var(--tint); }
+.lay-cards .hd    { background: #fff; }
+.lay-cards .mn, .lay-cards .sd { display: grid; grid-template-columns: 1fr 1fr; gap: calc(3cqw * var(--sp)); align-items: start; }
+.lay-cards .sec   { margin: 0; background: #fff; border: .2cqw solid var(--line); border-radius: 2.2cqw; padding: calc(3cqw * var(--sp)); box-shadow: 0 1cqw 3cqw rgba(15,23,42,.05); }
+.lay-cards .sec:last-child { margin: 0; }
+.lay-minimal        { /* uses the page margin like every layout */ }
+.lay-minimal .doc   { grid-template-columns: 1fr auto; grid-template-areas: "hd pic" "ft ft" "mn mn" "sd sd"; }
+.lay-minimal .nm    { font-weight: 600; letter-spacing: -.02em; }
+.lay-minimal .sec   { border-top: .15cqw solid var(--line); padding-top: calc(2.5cqw * var(--sp)); }
+.lay-minimal .sec-t { color: var(--ink); letter-spacing: .2em; font-weight: 600; }
+.lay-minimal .fact dd { font-size: calc(1.75cqw * var(--fs)); }
+.lay-creative .doc  { grid-template-columns: 38% 1fr; grid-template-areas: "pic hd" "pic ft" "sd mn"; }
+.lay-creative .nm   { text-transform: uppercase; letter-spacing: -.01em; }
+.lay-creative .photo { width: 100%; }
+.lay-creative::after {
+  content: ""; position: absolute; right: -22cqw; top: -22cqw; width: 50cqw; height: 50cqw;
+  background: var(--soft); transform: rotate(45deg); z-index: 0;
+}
+.lay-executive .doc { grid-template-columns: 1fr 30%; grid-template-areas: "hd pic" "ft ft" "mn sd"; }
+.lay-executive .ft  { border-top: .2cqw solid var(--line); border-bottom: .2cqw solid var(--line); }
+.lay-executive .sd  { background: var(--tint); }
+.lay-executive .nm  { font-weight: 800; }
+.lay-executive .sec-t { letter-spacing: .08em; }
+.lay-compact        { /* uses the page margin like every layout */ }
+.lay-compact .doc   { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "hd hd hd" "pic ft ft" "mn mn sd"; }
+.lay-compact .sec   { margin-bottom: calc(2.5cqw * var(--sp)); }
+.lay-compact .entry { margin-bottom: calc(2cqw * var(--sp)); }
+.lay-compact .ft    { grid-template-columns: 1fr 1fr; }
+.lay-hero .doc      { grid-template-columns: 1fr 1.6fr; grid-template-areas: "pic hd" "ft ft" "sd mn"; }
+.lay-hero .photo    { width: 100%; }
+.lay-hero .nm       { font-size: calc(7.4cqw * var(--fs)); }
+.lay-center .doc    { grid-template-columns: 1fr; grid-template-areas: "pic" "hd" "ft" "mn" "sd"; }
+.lay-center .hd, .lay-center .sub, .lay-center .ft, .lay-center .sec-t { text-align: center; }
+.lay-center .pic    { justify-self: center; }
+.lay-center .hs-mono .hd { justify-content: center; }
+.lay-center .st-leftbar .sec-t { border-left: 0; padding-left: 0; border-bottom: .3cqw solid var(--accent); padding-bottom: calc(1cqw * var(--sp)); }
+.lay-magazine .doc  { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "hd hd pic" "ft mn mn" "sd mn mn"; }
+.lay-magazine .nm   { font-size: calc(6.8cqw * var(--fs)); }
+.lay-tintleft .doc  { grid-template-columns: 36% 1fr; grid-template-areas: "hd hd" "pic mn" "ft mn" "sd mn"; }
+
+/* =========================================================================
+   5c. SIDEBAR BACKGROUNDS & DARK/TINT CONTEXT
+   Backgrounds are drawn as a full-height pseudo-element so they always match
+   the sidebar column width exactly, even when content is short.
+   ========================================================================= */
+.bg-dark-l::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: var(--dark); z-index: 0; }
+.bg-tint-r::before { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 34%; background: var(--tint); z-index: 0; }
+.bg-tint-l::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 36%; background: var(--tint); z-index: 0; }
+.bg-dark-l .pic, .bg-dark-l .ft, .bg-dark-l .sd { color: var(--on-dark); }
+.bg-dark-l .fact dt { color: var(--on-dark-muted); }
+.bg-dark-l .fact dd { color: var(--on-dark); }
+.bg-dark-l .ft .sec-t, .bg-dark-l .sd .sec-t { color: var(--on-dark-accent); }
+.bg-dark-l .st-underline .ft .sec-t, .bg-dark-l .st-underline .sd .sec-t { border-bottom-color: rgba(255,255,255,.22); }
+.bg-dark-l .st-pill .ft .sec-t, .bg-dark-l .st-pill .sd .sec-t { background: rgba(255,255,255,.12); color: #fff; }
+.bg-dark-l .st-leftbar .ft .sec-t, .bg-dark-l .st-leftbar .sd .sec-t { border-left-color: var(--on-dark-accent); }
+.bg-dark-l .pic .txt, .bg-dark-l .ft .txt, .bg-dark-l .sd .txt { color: var(--on-dark); }
+.bg-dark-l .chips span { background: rgba(255,255,255,.12); color: var(--on-dark); }
+.bg-dark-l .ph, .bg-dark-l .ph-txt { color: var(--on-dark-muted); }
+.bg-dark-l .photo { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.25); width: 100%; }
+.bg-dark-l .photo .ini { color: var(--on-dark-accent); }
+.bg-tint-r .photo, .bg-tint-l .photo { width: 100%; }
+
+/* =========================================================================
+   5d. HEADER STYLES (5)
+   ========================================================================= */
+.hs-underline .hd { border-bottom: .45cqw solid var(--accent); padding-bottom: calc(4cqw * var(--sp)); }
+.hs-banner .hd { background: var(--dark); color: var(--on-dark); }
+.hs-banner .nm { color: #fff; }
+.hs-banner .sub { color: var(--on-dark-accent); }
+.hs-mono .hd { display: flex; align-items: center; gap: 3cqw; flex-wrap: wrap; }
+.hs-mono .mono {
+  display: grid; place-items: center; flex: 0 0 auto; width: calc(10cqw * var(--fs)); aspect-ratio: 1;
+  border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-head); font-weight: 700;
+  font-size: calc(3.8cqw * var(--fs));
+}
+.hs-split .hd { border-top: .5cqw solid var(--accent); padding-top: calc(4cqw * var(--sp)); }
+.hs-split .nm { text-transform: uppercase; letter-spacing: .06em; font-size: calc(5cqw * var(--fs)); }
+.hs-split .sub { text-transform: uppercase; letter-spacing: .2em; font-size: calc(1.6cqw * var(--fs)); }
+/* Banner layout keeps its own dark band regardless of the header style */
+.lay-banner.hs-plain .hd, .lay-banner.hs-underline .hd, .lay-banner.hs-mono .hd, .lay-banner.hs-split .hd { border: 0; }
+
+/* =========================================================================
+   6. PRINT (exports exactly one A4 page)
+   ========================================================================= */
+/* =========================================================================
+   6. PRINT STYLESHEET — the main PDF route (window.print → "Save as PDF")
+   A4 page size, no app chrome, full-colour backgrounds, content that flows
+   onto extra A4 pages without splitting a section in half.
+   ========================================================================= */
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  html, body { background: #fff !important; height: auto !important; overflow: visible !important; }
+  .topbar, .view-tabs, .panel-form, .no-print, .app-footer, .overflow-note, dialog, #toast,
+  .page-label, #paper-measure { display: none !important; }
+  .workspace, .panel-preview, .preview-wrap, #paper-stack {
+    display: block !important; position: static !important; width: auto !important; height: auto !important;
+    max-width: none !important; margin: 0 !important; padding: 0 !important; background: #fff !important; overflow: visible !important;
+  }
+  .page-frame { display: block !important; margin: 0 !important; padding: 0 !important; }
+  /* One real A4 sheet per page box, no shadows, no preview scale */
+  .page-box {
+    width: 210mm !important; height: 297mm !important; margin: 0 !important; box-shadow: none !important;
+    overflow: hidden !important; break-after: page; page-break-after: always;
+  }
+  .page-frame:last-child .page-box { break-after: auto; page-break-after: auto; }
+  #paper-stack .paper { transform: none !important; box-shadow: none !important; }
+  /* Pages are cut by the layout (each page clips at its own start), so only small items are kept whole */
+  .entry, .fact, .chips span { break-inside: avoid; page-break-inside: avoid; }
+  .sec-t, .nm, .sub { break-after: avoid; page-break-after: avoid; }
+  /* Backgrounds, sidebars and colours print exactly as on screen */
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* Export: each page is rasterised at its true A4 size, without the preview scale */
+body.exporting .page-label { display: none !important; }
+body.exporting .page-box { width: 210mm !important; height: 297mm !important; box-shadow: none !important; }
+body.exporting #paper-stack .paper { transform: none !important; }
+
+/* =========================================================================
+   10. EXPORT UI — menu, busy state, toast with loading & error messages
+   ========================================================================= */
+.export { position: relative; }
+.export-menu {
+  position: absolute; right: 0; top: calc(100% + 8px); width: 300px; z-index: 30;
+  background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 6px;
+  box-shadow: 0 18px 40px rgba(15,23,42,.18); display: flex; flex-direction: column;
+}
+.export-menu button {
+  text-align: left; border: 0; background: none; padding: 10px 12px; border-radius: 10px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.export-menu button:hover, .export-menu button:focus-visible { background: var(--accent-soft); outline: none; }
+.export-menu b { font-size: 14px; color: var(--ink); }
+.export-menu span { font-size: 12px; color: var(--muted); }
+.btn:disabled { opacity: .65; cursor: progress; }
+.toast {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 60;
+  display: flex; align-items: center; gap: 10px; max-width: min(560px, 92vw);
+  background: #0f172a; color: #fff; padding: 11px 16px; border-radius: 12px; font-size: 14px;
+  box-shadow: 0 12px 30px rgba(15,23,42,.3);
+}
+.toast[data-kind="success"] { background: #065f46; }
+.toast[data-kind="error"] { background: #991b1b; }
+.spinner {
+  width: 16px; height: 16px; flex: 0 0 auto; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =========================================================================
+   11. POLISH — paper colour guard, animations, footer, data card,
+       validation hints, confirm dialog, dark editor UI
+   ========================================================================= */
+
+/* The A4 paper (and gallery thumbnails) keep light colours even when the editor is dark */
+.paper, .mini { --line: #e2e8f0; --muted: #64748b; --ink-2: #334155; --accent-soft: #eef2ff; }
+
+/* Smooth, subtle motion (disabled for users who ask for reduced motion) */
+@keyframes cm-fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes cm-pop { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes cm-slide-up { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.card { animation: cm-fade-up .35s ease both; }
+.item-card { animation: cm-fade-up .25s ease both; }
+.chip { animation: cm-pop .2s ease both; }
+.export-menu:not([hidden]) { animation: cm-pop .18s ease both; transform-origin: top right; }
+.toast:not([hidden]) { animation: cm-slide-up .25s ease both; }
+dialog[open] { animation: cm-pop .2s ease both; }
+.btn, .icon-btn { transition: background .15s, border-color .15s, color .15s, transform .15s; }
+.sec-list li { transition: background .2s, opacity .2s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Footer: privacy line + autosave status */
+.app-footer {
+  min-height: var(--footer-h); display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 4px 16px; padding: 6px 16px; background: var(--panel); border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12px; text-align: center;
+}
+.app-footer strong { color: var(--ink-2); font-weight: 600; }
+
+/* Your-data card (backup, import, clear) */
+.data-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+label.btn { display: inline-flex; align-items: center; cursor: pointer; }
+.btn-danger { color: #b91c1c; border-color: #fecaca; }
+.btn-danger:hover { background: #fef2f2; border-color: #f87171; }
+.btn-danger-solid { background: var(--danger); border-color: var(--danger); color: #fff; }
+.btn-danger-solid:hover { background: #b91c1c; border-color: #b91c1c; }
+#undo-btn:disabled, #dark-btn:disabled { opacity: .45; cursor: not-allowed; }
+#undo-btn:disabled:hover { background: #fff; border-color: var(--input-line); }
+
+/* Input validation hints */
+.vhint { display: block; margin-top: 4px; font-size: 12px; line-height: 1.35; color: #b45309; }
+.field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #f59e0b; }
+
+/* Confirm dialog */
+dialog.confirm {
+  border: 0; border-radius: 16px; padding: 22px; width: min(420px, 92vw);
+  box-shadow: 0 24px 60px rgba(15,23,42,.35); background: var(--panel); color: var(--ink);
+}
+dialog.confirm::backdrop { background: rgba(15,23,42,.45); }
+.confirm h2 { margin: 0 0 8px; font-size: 18px; }
+.confirm p { margin: 0 0 18px; color: var(--ink-2); line-height: 1.5; font-size: 14px; }
+.confirm-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+/* Dark editor UI — only app chrome changes; the paper is never inverted */
+html.ui-dark { color-scheme: dark; --bg: #0b1120; --panel: #111827; --ink: #e5e7eb; --ink-2: #cbd5e1; --muted: #94a3b8;
+  --line: #1f2937; --input-line: #374151; --accent-soft: #1e1b4b; --accent-ink: #c7d2fe; }
+html.ui-dark .topbar { background: rgba(17,24,39,.92); }
+html.ui-dark .view-tabs { background: #111827; }
+html.ui-dark .panel-preview { background: #030712; }
+html.ui-dark .mode-switch { background: #1f2937; }
+html.ui-dark .mode-switch button { color: var(--ink-2); }
+html.ui-dark .mode-switch button[aria-pressed="true"] { background: #374151; color: #fff; }
+html.ui-dark .btn { background: #1f2937; border-color: #374151; color: var(--ink-2); }
+html.ui-dark .btn:hover { background: #273449; border-color: #4b5563; }
+html.ui-dark .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+html.ui-dark .btn-primary:hover { background: #6366f1; border-color: #6366f1; }
+html.ui-dark .btn-danger { background: #1f2937; color: #fca5a5; border-color: #7f1d1d; }
+html.ui-dark .btn-danger:hover { background: #3b1116; border-color: #b91c1c; }
+html.ui-dark .btn-danger-solid { background: var(--danger); border-color: var(--danger); color: #fff; }
+html.ui-dark #undo-btn:disabled:hover { background: #1f2937; border-color: #374151; }
+html.ui-dark .icon-btn { background: #1f2937; border-color: #374151; color: var(--ink-2); }
+html.ui-dark .field input:not([type="range"]), html.ui-dark .field textarea, html.ui-dark .field select {
+  background: #0b1222; border-color: #374151; color: var(--ink); }
+html.ui-dark .field input::placeholder, html.ui-dark .field textarea::placeholder, html.ui-dark .skill-input::placeholder { color: #64748b; }
+html.ui-dark .tag-box { background: #0b1222; border-color: #374151; }
+html.ui-dark .skill-input { color: var(--ink); }
+html.ui-dark .item-card { background: #0f172a; border-color: #1f2937; }
+html.ui-dark .photo-box { background: #0b1222; border-color: #475569; }
+html.ui-dark .sec-list li { background: #0f172a; border-color: #1f2937; }
+html.ui-dark dialog { background: var(--panel); color: var(--ink); }
+html.ui-dark .export-menu { background: #111827; border-color: #1f2937; }
+html.ui-dark .export-menu button:hover, html.ui-dark .export-menu button:focus-visible { background: #1e293b; }
+html.ui-dark .export-menu b { color: var(--ink); }
+html.ui-dark .vhint { color: #fbbf24; }
+html.ui-dark .app-footer { background: #111827; border-color: #1f2937; }
+html.ui-dark .count strong { color: #c7d2fe; }
+
+/* =========================================================================
+   12. A4 PAGE STACK (preview), margins, and the gallery/customize styles
+   ========================================================================= */
+#paper-stack { display: flex; flex-direction: column; align-items: center; gap: 22px; width: 100%; }
+.page-frame { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.page-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .02em; }
+.page-box {
+  position: relative; width: calc(210mm * var(--s, 1)); height: calc(297mm * var(--s, 1));
+  background: #fff; overflow: hidden; box-shadow: 0 10px 30px rgba(15,23,42,.18), 0 1px 3px rgba(15,23,42,.1);
+}
+#paper-stack .paper { position: absolute; left: 0; top: 0; box-shadow: none; transform: scale(var(--s, 1)); transform-origin: 0 0; }
+/* Each page shows the layout between its top and bottom margins; sidebar fills stay full-bleed (on .paper) */
+.clip { position: absolute; left: 0; right: 0; top: 0; bottom: var(--margin); overflow: hidden; }
+.clip.cont { top: var(--margin); }
+/* Off-screen measuring copy */
+.paper.measure { position: absolute !important; left: -10000px; top: 0; height: auto !important; visibility: hidden; pointer-events: none; transform: none !important; box-shadow: none; }
+.measure .doc { position: relative !important; top: 0 !important; }
+
+.page-opts { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.seg { display: inline-flex; gap: 4px; padding: 4px; background: #e2e8f0; border-radius: 12px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; padding: 7px 12px; border-radius: 9px; font-weight: 600; font-size: 13px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: #fff; color: var(--accent-ink); box-shadow: 0 1px 3px rgba(15,23,42,.15); }
+.check-row { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+.check-row input { width: 16px; height: 16px; accent-color: var(--accent); }
+
+/* Gallery */
+#gallery { border: 0; border-radius: 16px; padding: 0; width: min(980px, 96vw); max-width: 96vw; height: min(88vh, 900px);
+  display: none; flex-direction: column; overflow: hidden; background: var(--panel); color: var(--ink); box-shadow: 0 24px 60px rgba(15,23,42,.35); }
+#gallery[open] { display: flex; }
+#gallery::backdrop { background: rgba(15,23,42,.5); }
+.gal-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.gal-head h2 { margin: 0; font-size: 18px; }
+.gal-head .hint { margin: 2px 0 0; }
+.gal-filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 20px; border-bottom: 1px solid var(--line); }
+.chip-btn { border: 1px solid var(--input-line); background: #fff; color: var(--ink-2); padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+.chip-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.gal-grid { flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; padding: 16px 20px 24px; align-content: start; }
+.tpl { display: flex; flex-direction: column; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); text-align: left; }
+.tpl:hover, .tpl:focus-visible { border-color: var(--accent); box-shadow: 0 6px 18px rgba(79,70,229,.15); transform: translateY(-2px); outline: none; }
+.tpl-name { font-weight: 700; font-size: 13px; color: var(--ink); }
+.tpl-meta { font-size: 11px; color: var(--muted); }
+.thumb { position: relative; aspect-ratio: 210 / 297; overflow: hidden; border-radius: 8px; background: #fff; border: 1px solid var(--line); }
+.thumb .mini { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: scale(var(--ts, .2)); pointer-events: none; box-shadow: none; }
+
+/* Customize panel */
+.cz-summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.cz-summary::-webkit-details-marker { display: none; }
+.cz-sub { font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.cz-group { border-top: 1px solid var(--line); padding: 12px 0; }
+.cz-group h3 { margin: 0 0 8px; font-size: 14px; }
+.swatch-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+.swatch-row label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.swatch-row input[type="color"] { width: 44px; height: 32px; padding: 2px; border: 1px solid var(--input-line); border-radius: 8px; background: #fff; cursor: pointer; }
+.link-btn { border: 0; background: none; color: var(--accent-ink); font-weight: 600; font-size: 13px; padding: 4px 0; text-decoration: underline; }
+.sec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sec-list li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.sec-list li.is-hidden { opacity: .55; }
+.sec-list li.dragover { border-top: 3px solid var(--accent); }
+.sec-list li.dragging { opacity: .4; }
+.drag-handle { color: var(--muted); cursor: grab; font-size: 16px; user-select: none; }
+.sec-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+.sec-meta { font-size: 12px; color: var(--muted); }
+.row-btns { display: flex; gap: 4px; }
+.icon-btn { width: 30px; height: 30px; border: 1px solid var(--input-line); border-radius: 8px; background: #fff; color: var(--ink-2); font-size: 14px; line-height: 1; }
+.icon-btn:hover:not(:disabled) { background: var(--accent-soft); border-color: var(--accent); }
+.icon-btn:disabled { opacity: .35; cursor: not-allowed; }
+.icon-btn[aria-pressed="false"] { opacity: .6; }
+
+/* Dark editor: the restored controls follow the editor theme too */
+html.ui-dark .chip-btn { background: #1f2937; color: var(--ink-2); border-color: #374151; }
+html.ui-dark .chip-btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+html.ui-dark .seg { background: #1f2937; }
+html.ui-dark .seg button { color: var(--ink-2); }
+html.ui-dark .seg button[aria-pressed="true"] { background: #374151; color: #fff; }
+html.ui-dark .tpl { background: #111827; border-color: #1f2937; }
+html.ui-dark .swatch-row input[type="color"], html.ui-dark .icon-btn { background: #1f2937; border-color: #374151; }
+html.ui-dark .thumb { border-color: #1f2937; }
+</style>
+</head>
+<body data-mode="cv" data-view="edit">
+
+<!-- =========================================================================
+     HTML 1: TOP BAR — brand, mode switch (Job CV / Marriage Biodata), actions
+     ========================================================================= -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo" aria-hidden="true">CV</div>
+    <div>
+      <h1>CV &amp; Biodata Maker</h1>
+      <small>সিভি ও বায়োডাটা · English &amp; বাংলা</small>
+    </div>
+  </div>
+
+  <div class="mode-switch" role="group" aria-label="Document type">
+    <button type="button" data-action="set-mode" data-mode="cv" aria-pressed="true">Job CV</button>
+    <button type="button" data-action="set-mode" data-mode="bio" aria-pressed="false">Marriage Biodata</button>
+  </div>
+
+  <div class="actions no-print">
+    <button type="button" class="btn" data-action="open-gallery" title="Browse 40 curated templates">🖼 Templates</button>
+    <button type="button" class="btn" data-action="shuffle" title="Pick a random design">🎲 Shuffle</button>
+    <button type="button" class="btn" data-action="sample" title="Fill the form with an example CV or biodata">Load sample</button>
+    <button type="button" class="btn" id="undo-btn" data-action="undo" title="Undo the last change (Ctrl+Z)" disabled>↶ Undo</button>
+    <button type="button" class="btn" id="dark-btn" data-action="toggle-dark" aria-pressed="false" title="Dark editor (the A4 paper stays white)">🌙 <span>Dark</span></button>
+    <div class="export no-print" id="export">
+  <button type="button" class="btn btn-primary" id="export-btn" data-action="export-toggle" aria-haspopup="true" aria-expanded="false">⬇ Export ▾</button>
+  <div class="export-menu" id="export-menu" role="menu" hidden>
+    <button type="button" role="menuitem" data-action="export-print">
+      <b>Print / Save as PDF</b><span>Recommended · A4 · selectable text · flows to extra pages</span>
+    </button>
+    <button type="button" role="menuitem" data-action="export-pdf-image">
+      <b>PDF file (image-based)</b><span>Fallback · works when printing is blocked · text is not selectable</span>
+    </button>
+    <button type="button" role="menuitem" data-action="export-png">
+      <b>PNG image</b><span>One page of the preview · high resolution</span>
+    </button>
+    <button type="button" role="menuitem" data-action="export-jpg">
+      <b>JPG image</b><span>One page of the preview · smaller file</span>
+    </button>
+  </div>
+</div>
+  </div>
+</header>
+
+<!-- Mobile-only tabs: switch between the editor and the live preview -->
+<nav class="view-tabs no-print" role="tablist" aria-label="Views">
+  <button type="button" role="tab" data-action="set-view" data-view="edit" aria-selected="true">✏️ Edit</button>
+  <button type="button" role="tab" data-action="set-view" data-view="preview" aria-selected="false">👁 Preview</button>
+</nav>
+
+<main class="workspace">
+
+  <!-- ======================================================================
+       HTML 2: LEFT PANEL — design engine + forms
+       ====================================================================== -->
+  <section class="panel-form" aria-label="Form">
+
+    <!-- ---------------------------- DESIGN ENGINE ---------------------------- -->
+    <section class="card no-print" id="design-card" aria-label="Design options">
+      <div class="design-head">
+        <h2>Design</h2>
+        <div class="count">Possible combinations<strong id="combo-count">0</strong></div>
+      </div>
+      <div class="design-grid">
+        <label class="field"><span>Layout (15)</span><select id="opt-layout"></select></label>
+        <label class="field"><span>Color theme (30)</span>
+          <div class="sel-row"><span class="swatches" id="swatch" aria-hidden="true"></span><select id="opt-theme"></select></div></label>
+        <label class="field"><span>Font pairing (12)</span><select id="opt-font"></select></label>
+        <label class="field"><span>Header style (5)</span><select id="opt-header"></select></label>
+        <label class="field"><span>Section titles (4)</span><select id="opt-section"></select></label>
+        <label class="field"><span>Photo shape (3)</span><select id="opt-photo"></select></label>
+        <label class="field"><span>Font size <output id="out-fs">100%</output></span>
+          <input type="range" id="fs-range" min="70" max="130" step="5" value="100"></label>
+        <label class="field"><span>Spacing <output id="out-sp">100%</output></span>
+          <input type="range" id="sp-range" min="60" max="140" step="5" value="100"></label>
+      </div>
+      <div class="page-opts">
+        <div class="field"><span>Page margin <output id="out-margin">Normal · 13.5 mm</output></span>
+          <div class="seg" role="group" aria-label="Page margin">
+            <button type="button" data-action="set-margin" data-margin="narrow" aria-pressed="false">Narrow 12 mm</button>
+            <button type="button" data-action="set-margin" data-margin="normal" aria-pressed="true">Normal 13.5 mm</button>
+            <button type="button" data-action="set-margin" data-margin="wide" aria-pressed="false">Wide 15 mm</button>
+          </div>
+        </div>
+        <label class="check-row"><input type="checkbox" id="fit-one"> <span>Fit everything on one page (shrinks text instead of adding pages)</span></label>
+      </div>
+      <div class="design-actions">
+        <button type="button" class="btn btn-primary" data-action="shuffle">🎲 Shuffle design</button>
+        <button type="button" class="btn" data-action="reset-design">Reset</button>
+        <p class="hint">Every option works for both Job CV and Biodata. Long content flows onto extra A4 pages with sections kept whole.</p>
+      </div>
+    </section>
+
+    <!-- ---------------------------- CUSTOMIZE ---------------------------- -->
+    <section class="card no-print" id="customize-card" aria-label="Customize">
+      <details open>
+        <summary class="cz-summary">Customize <span class="cz-sub">colours · fonts · sections</span></summary>
+        <div class="cz-group">
+          <h3>Colours</h3>
+          <div class="swatch-row">
+            <label>Accent<input type="color" id="cz-accent"></label>
+            <label>Sidebar / banner<input type="color" id="cz-dark"></label>
+            <label>Text<input type="color" id="cz-ink"></label>
+          </div>
+          <button type="button" class="link-btn" data-action="reset-colors">Reset colours to theme</button>
+        </div>
+        <div class="cz-group">
+          <h3>Fonts</h3>
+          <div class="grid-2">
+            <label class="field"><span>Heading font</span><select id="cz-head"></select></label>
+            <label class="field"><span>Body font</span><select id="cz-body"></select></label>
+          </div>
+          <button type="button" class="link-btn" data-action="reset-fonts">Reset fonts to pairing</button>
+        </div>
+        <div class="cz-group">
+          <h3>Sections</h3>
+          <p class="hint">Drag ⋮⋮ or use ↑ ↓ to reorder (within the sidebar or the main column). Use 👁 to show or hide a section.</p>
+          <ul class="sec-list" id="sec-list"></ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- ---------------------------- JOB CV FORM ---------------------------- -->
+    <form id="form-cv" class="form" autocomplete="off">
+
+      <div class="card">
+        <h2>Photo</h2>
+        <div class="photo-row">
+          <div class="photo-box" data-photo-box>No photo</div>
+          <div class="photo-controls">
+            <label class="file-btn">Upload photo<input type="file" accept="image/*" data-photo-input></label>
+            <button type="button" class="link-btn danger" data-action="clear-photo" data-photo-clear hidden>Remove photo</button>
+            <p class="hint">JPG or PNG, under 5 MB.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Personal details</h2>
+        <div class="grid-2">
+          <label class="field"><span>Full name</span><input type="text" data-key="name" placeholder="e.g. Nusrat Jahan / নুসরাত জাহান"></label>
+          <label class="field"><span>Job title</span><input type="text" data-key="title" placeholder="e.g. Senior Frontend Engineer"></label>
+          <label class="field"><span>Phone</span><input type="tel" data-key="phone" data-check="phone" placeholder="+880 1XXX-XXXXXX"><small class="vhint" hidden></small></label>
+          <label class="field"><span>Email</span><input type="email" data-key="email" data-check="email" placeholder="you@example.com"><small class="vhint" hidden></small></label>
+          <label class="field span-2"><span>Address</span><input type="text" data-key="address" placeholder="House, road, area, city"></label>
+          <label class="field span-2"><span>Professional summary</span><textarea rows="4" data-key="summary" data-check="long" placeholder="A short overview of your experience and strengths…"></textarea><small class="vhint" hidden></small></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Work experience</h2>
+        <div id="experience-list"></div>
+        <button type="button" class="btn btn-add" data-action="add-item" data-list="experience">+ Add experience</button>
+      </div>
+
+      <div class="card">
+        <h2>Education</h2>
+        <div id="education-list"></div>
+        <button type="button" class="btn btn-add" data-action="add-item" data-list="education">+ Add education</button>
+      </div>
+
+      <div class="card">
+        <h2>Skills</h2>
+        <div class="tag-box">
+          <span id="skills-chips" style="display:contents"></span>
+          <input type="text" id="skill-input" class="skill-input" placeholder="Type a skill and press Enter">
+        </div>
+        <p class="hint">Press Enter or comma to add. Backspace on an empty field removes the last tag.</p>
+      </div>
+
+      <div class="card">
+        <h2>Languages &amp; references</h2>
+        <div class="grid-2">
+          <label class="field span-2"><span>Languages</span><input type="text" data-key="languages" placeholder="বাংলা (মাতৃভাষা), English (Fluent)"></label>
+          <label class="field span-2"><span>References</span><textarea rows="3" data-key="references" placeholder="Name, designation, company, contact — one per line"></textarea></label>
+        </div>
+      </div>
+    </form>
+
+    <!-- ------------------------- MARRIAGE BIODATA FORM ------------------------- -->
+    <form id="form-bio" class="form" autocomplete="off" hidden>
+
+      <div class="card">
+        <h2>Photo</h2>
+        <div class="photo-row">
+          <div class="photo-box" data-photo-box>No photo</div>
+          <div class="photo-controls">
+            <label class="file-btn">Upload photo<input type="file" accept="image/*" data-photo-input></label>
+            <button type="button" class="link-btn danger" data-action="clear-photo" data-photo-clear hidden>Remove photo</button>
+            <p class="hint">JPG or PNG, under 5 MB.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Personal information</h2>
+        <div class="grid-2">
+          <label class="field span-2"><span>Full name / পূর্ণ নাম</span><input type="text" data-key="name" placeholder="e.g. ফাতেমা খাতুন"></label>
+          <label class="field"><span>Age / বয়স</span><input type="text" data-key="age" placeholder="e.g. 26 years"></label>
+          <label class="field"><span>Height / উচ্চতা</span><input type="text" data-key="height" placeholder="e.g. 5 ft 4 in"></label>
+          <label class="field"><span>Religion / ধর্ম</span><input type="text" data-key="religion" placeholder="e.g. Islam"></label>
+          <label class="field"><span>Profession / পেশা</span><input type="text" data-key="profession" placeholder="e.g. Bank Officer"></label>
+          <label class="field span-2"><span>Education / শিক্ষাগত যোগ্যতা</span><input type="text" data-key="education" placeholder="e.g. MBA (Finance), University of Dhaka"></label>
+          <label class="field span-2"><span>Address / ঠিকানা</span><input type="text" data-key="address" placeholder="e.g. Mirpur-10, Dhaka"></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Family details</h2>
+        <label class="field"><span>Father, mother, siblings / পারিবারিক তথ্য</span>
+          <textarea rows="4" data-key="family" placeholder="Father: …&#10;Mother: …&#10;Siblings: …"></textarea></label>
+      </div>
+
+      <div class="card">
+        <h2>Expectations &amp; contact</h2>
+        <div class="grid-2">
+          <label class="field span-2"><span>Expectations / প্রত্যাশা</span>
+            <textarea rows="3" data-key="expectations" placeholder="Expectations from the life partner…"></textarea></label>
+          <label class="field span-2"><span>Contact / যোগাযোগ</span>
+            <textarea rows="2" data-key="contact" placeholder="Phone, email, guardian contact…"></textarea></label>
+        </div>
+      </div>
+    </form>
+
+    <!-- ------------------- YOUR DATA: backup, import, clear all ------------------- -->
+    <section class="card no-print data-card" aria-label="Your data">
+      <h2>Your data</h2>
+      <p class="hint">Changes save automatically in this browser. Export a JSON backup to keep a copy or move to another device.</p>
+      <div class="data-actions">
+        <button type="button" class="btn" data-action="export-json">⤓ Export JSON</button>
+        <label class="btn">⤒ Import JSON<input type="file" accept="application/json,.json" data-json-input hidden></label>
+        <button type="button" class="btn btn-danger" data-action="clear-all">🗑 Clear all</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ======================================================================
+       HTML 3: RIGHT PANEL — live A4 preview
+       ====================================================================== -->
+  <section class="panel-preview" aria-label="Live preview">
+    <div class="preview-wrap">
+      <div class="overflow-note no-print" id="overflow-note" hidden></div>
+      <div class="paper-shell" id="paper-stack" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Off-screen A4 layout used to measure where pages break -->
+<div class="paper measure" id="paper-measure" aria-hidden="true"></div>
+
+<footer class="app-footer no-print">
+  <span>🔒 <strong>Your data stays in your browser. Nothing is uploaded.</strong></span>
+  <span id="save-status" aria-live="polite"></span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span class="spinner" hidden></span><span id="toast-msg"></span>
+</div>
+
+<dialog id="confirm" class="confirm" aria-labelledby="confirm-title">
+  <form method="dialog">
+    <h2 id="confirm-title">Are you sure?</h2>
+    <p id="confirm-msg"></p>
+    <div class="confirm-actions">
+      <button type="submit" value="cancel" class="btn">Cancel</button>
+      <button type="submit" value="ok" id="confirm-ok" class="btn btn-danger-solid">Confirm</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="gallery" aria-labelledby="gal-title">
+  <div class="gal-head">
+    <div>
+      <h2 id="gal-title">Template Gallery</h2>
+      <p class="hint" id="gal-count"></p>
+    </div>
+    <button type="button" class="btn" data-action="close-gallery">Close</button>
+  </div>
+  <div class="gal-filters" id="gal-filters"></div>
+  <div class="gal-grid" id="gal-grid"></div>
+</dialog>
+
+<script>
+(() => {
+  'use strict';
+
+  /* =========================================================================
+     7.1  DESIGN OPTIONS (the combinatorial space — unchanged from v2)
+     ========================================================================= */
+  const LAYOUTS = [
+    { id: 'single',    name: 'Single column',         cls: 'single',    bg: null,     row: true  },
+    { id: 'left',      name: 'Left sidebar',          cls: 'left',      bg: 'dark-l', row: false },
+    { id: 'right',     name: 'Right sidebar',         cls: 'right',     bg: 'tint-r', row: false },
+    { id: 'split',     name: 'Two-column split',      cls: 'split',     bg: null,     row: false },
+    { id: 'banner',    name: 'Top banner',            cls: 'banner',    bg: null,     row: true  },
+    { id: 'timeline',  name: 'Timeline',              cls: 'timeline',  bg: null,     row: true  },
+    { id: 'cards',     name: 'Card grid',             cls: 'cards',     bg: null,     row: true  },
+    { id: 'minimal',   name: 'Minimal',               cls: 'minimal',   bg: null,     row: true  },
+    { id: 'creative',  name: 'Creative',              cls: 'creative',  bg: null,     row: false },
+    { id: 'executive', name: 'Executive',             cls: 'executive', bg: null,     row: true  },
+    { id: 'compact',   name: 'Compact',               cls: 'compact',   bg: null,     row: true  },
+    { id: 'hero',      name: 'Photo hero',            cls: 'hero',      bg: null,     row: true  },
+    { id: 'center',    name: 'Centered classic',      cls: 'center',    bg: null,     row: true  },
+    { id: 'magazine',  name: 'Magazine',              cls: 'magazine',  bg: null,     row: false },
+    { id: 'tintleft',  name: 'Tinted sidebar (left)', cls: 'tintleft',  bg: 'tint-l', row: false }
+  ];
+
+  const THEMES = [
+    ['indigo', 'Indigo', '#4f46e5', '#1e1b4b'], ['teal', 'Teal', '#0f766e', '#042f2e'],
+    ['emerald', 'Emerald', '#047857', '#022c22'], ['rose', 'Rose', '#be123c', '#4c0519'],
+    ['amber', 'Amber', '#b45309', '#451a03'], ['slate', 'Slate', '#475569', '#0f172a'],
+    ['navy', 'Navy', '#1d4ed8', '#172554'], ['burgundy', 'Burgundy', '#881337', '#3f0d1d'],
+    ['forest', 'Forest', '#166534', '#052e16'], ['plum', 'Plum', '#7e22ce', '#3b0764'],
+    ['ocean', 'Ocean', '#0369a1', '#082f49'], ['sunset', 'Sunset', '#c2410c', '#431407'],
+    ['mint', 'Mint', '#0d9488', '#134e4a'], ['crimson', 'Crimson', '#b91c1c', '#450a0a'],
+    ['sky', 'Sky', '#0284c7', '#0c4a6e'], ['lavender', 'Lavender', '#6d28d9', '#2e1065'],
+    ['gold', 'Gold', '#a16207', '#422006'], ['charcoal', 'Charcoal', '#27272a', '#09090b'],
+    ['olive', 'Olive', '#4d7c0f', '#1a2e05'], ['cobalt', 'Cobalt', '#1e40af', '#1e3a8a'],
+    ['mocha', 'Mocha', '#78350f', '#292524'], ['berry', 'Berry', '#a21caf', '#4a044e'],
+    ['steel', 'Steel', '#334155', '#1e293b'], ['sage', 'Sage', '#4d6b4f', '#14291a'],
+    ['magenta', 'Magenta', '#c026d3', '#701a75'], ['denim', 'Denim', '#1e5a8a', '#0c2d48'],
+    ['brick', 'Brick', '#9a3412', '#3b1608'], ['graphite', 'Graphite', '#3f3f46', '#18181b'],
+    ['lagoon', 'Lagoon', '#0e7490', '#083344'], ['cherry', 'Cherry', '#dc2626', '#7f1d1d']
+  ].map(([id, name, accent, dark]) => ({ id, name, accent, dark }));
+
+  const FONTS = [
+    ['inter',      'Inter (modern)',                             'Inter',             'sans-serif', 700, 'Inter',          'sans-serif'],
+    ['hind',       'Hind Siliguri (Bangla-friendly)',            'Hind Siliguri',     'sans-serif', 700, 'Hind Siliguri',  'sans-serif'],
+    ['playfair',   'Playfair + Source Sans (elegant)',           'Playfair Display',  'serif',      700, 'Source Sans 3',  'sans-serif'],
+    ['merri',      'Merriweather + Open Sans (editorial)',       'Merriweather',      'serif',      700, 'Open Sans',      'sans-serif'],
+    ['montserrat', 'Montserrat + Lato (geometric)',              'Montserrat',        'sans-serif', 700, 'Lato',           'sans-serif'],
+    ['poppins',    'Poppins + Nunito (friendly)',                'Poppins',           'sans-serif', 700, 'Nunito',         'sans-serif'],
+    ['lora',       'Lora + Roboto (literary)',                   'Lora',              'serif',      700, 'Roboto',         'sans-serif'],
+    ['oswald',     'Oswald + Work Sans (condensed)',             'Oswald',            'sans-serif', 600, 'Work Sans',      'sans-serif'],
+    ['raleway',    'Raleway + Source Serif (refined)',           'Raleway',           'sans-serif', 800, 'Source Serif 4', 'serif'],
+    ['libre',      'Libre Baskerville + Karla (classic)',        'Libre Baskerville', 'serif',      700, 'Karla',          'sans-serif'],
+    ['tiro',       'Tiro Bangla + Hind Siliguri (Bangla serif)', 'Tiro Bangla',       'serif',      400, 'Hind Siliguri',  'sans-serif'],
+    ['dm',         'DM Serif + DM Sans (bold)',                  'DM Serif Display',  'serif',      400, 'DM Sans',        'sans-serif']
+  ].map(([id, name, head, headCat, headWeight, body, bodyCat]) => ({ id, name, head, headCat, headWeight, body, bodyCat }));
+
+  const HEADERS = [
+    { id: 'plain', name: 'Plain' }, { id: 'banner', name: 'Color banner' }, { id: 'underline', name: 'Underlined' },
+    { id: 'mono', name: 'Monogram' }, { id: 'split', name: 'Split caps' }
+  ];
+  const SECTIONS = [
+    { id: 'underline', name: 'Underline' }, { id: 'pill', name: 'Pill' }, { id: 'leftbar', name: 'Left bar' }, { id: 'plain', name: 'Plain' }
+  ];
+  const PHOTOS = [ { id: 'circle', name: 'Circle' }, { id: 'rounded', name: 'Rounded' }, { id: 'square', name: 'Square' } ];
+
+  const TOTAL_COMBOS = LAYOUTS.length * THEMES.length * FONTS.length * HEADERS.length * SECTIONS.length * PHOTOS.length;
+  const DEFAULT_DESIGN = { layout: 'left', theme: 'indigo', font: 'inter', header: 'plain', section: 'underline', photo: 'rounded', fs: 100, sp: 100, margin: 'normal', fit: false };
+
+  /* =========================================================================
+     7.2  SECTION DEFINITIONS — ids, labels and the column each one lives in
+     ========================================================================= */
+  const SECTION_DEFS = {
+    cv: [
+      { id: 'skills', label: 'Skills', region: 'side' },
+      { id: 'languages', label: 'Languages', region: 'side' },
+      { id: 'profile', label: 'Profile', region: 'main' },
+      { id: 'experience', label: 'Work Experience', region: 'main' },
+      { id: 'education', label: 'Education', region: 'main' },
+      { id: 'references', label: 'References', region: 'main' }
+    ],
+    bio: [
+      { id: 'contact', label: 'Contact', region: 'side' },
+      { id: 'family', label: 'Family Details', region: 'main' },
+      { id: 'expectations', label: 'Expectations', region: 'main' }
+    ]
+  };
+  const regionOf = (mode, id) => SECTION_DEFS[mode].find(s => s.id === id).region;
+  const defaultPrefs = mode => ({ order: SECTION_DEFS[mode].map(s => s.id), hidden: {} });
+
+  /* =========================================================================
+     7.3  TEMPLATE PRESETS (40)
+     Tuple: name, mode, categories (P Professional, C Creative, M Minimal,
+            F Fresher, B Biodata, D Dark Header), layout, theme, font, header, section, photo
+     ========================================================================= */
+  const PRESET_TUPLES = [
+    ['Executive Navy', 'cv', 'P', 'executive', 'navy', 'libre', 'underline', 'underline', 'square'],
+    ['Corporate Slate', 'cv', 'P', 'left', 'slate', 'inter', 'plain', 'underline', 'rounded'],
+    ['Modern Teal', 'cv', 'P', 'left', 'teal', 'inter', 'plain', 'leftbar', 'rounded'],
+    ['Boardroom Charcoal', 'cv', 'P', 'split', 'charcoal', 'playfair', 'underline', 'pill', 'square'],
+    ['Classic Burgundy', 'cv', 'P', 'single', 'burgundy', 'libre', 'underline', 'underline', 'square'],
+    ['Ocean Pro', 'cv', 'PD', 'right', 'ocean', 'montserrat', 'banner', 'leftbar', 'circle'],
+    ['Forest Consulting', 'cv', 'P', 'tintleft', 'forest', 'merri', 'plain', 'underline', 'rounded'],
+    ['Steel Analyst', 'cv', 'P', 'timeline', 'steel', 'poppins', 'mono', 'plain', 'square'],
+    ['Cobalt Banner', 'cv', 'PD', 'banner', 'cobalt', 'inter', 'banner', 'pill', 'rounded'],
+    ['Denim Manager', 'cv', 'P', 'executive', 'denim', 'raleway', 'underline', 'leftbar', 'rounded'],
+    ['Sunset Creative', 'cv', 'C', 'creative', 'sunset', 'dm', 'plain', 'pill', 'circle'],
+    ['Plum Spotlight', 'cv', 'C', 'creative', 'plum', 'poppins', 'plain', 'pill', 'circle'],
+    ['Magenta Pop', 'cv', 'C', 'magazine', 'magenta', 'oswald', 'plain', 'leftbar', 'square'],
+    ['Mint Cards', 'cv', 'C', 'cards', 'mint', 'poppins', 'plain', 'pill', 'rounded'],
+    ['Lavender Hero', 'cv', 'C', 'hero', 'lavender', 'raleway', 'split', 'pill', 'circle'],
+    ['Berry Editorial', 'cv', 'C', 'magazine', 'berry', 'merri', 'mono', 'underline', 'rounded'],
+    ['Cherry Splash', 'cv', 'CD', 'creative', 'cherry', 'lora', 'banner', 'pill', 'circle'],
+    ['Lagoon Wave', 'cv', 'C', 'cards', 'lagoon', 'montserrat', 'underline', 'pill', 'rounded'],
+    ['Pure Minimal', 'cv', 'M', 'minimal', 'slate', 'inter', 'plain', 'plain', 'square'],
+    ['Graphite Quiet', 'cv', 'M', 'minimal', 'graphite', 'raleway', 'plain', 'underline', 'square'],
+    ['Sage Whisper', 'cv', 'M', 'minimal', 'sage', 'dm', 'plain', 'underline', 'circle'],
+    ['Olive Line', 'cv', 'M', 'timeline', 'olive', 'inter', 'plain', 'plain', 'rounded'],
+    ['Sky Clean', 'cv', 'M', 'single', 'sky', 'hind', 'plain', 'underline', 'rounded'],
+    ['Mocha Calm', 'cv', 'M', 'center', 'mocha', 'lora', 'plain', 'plain', 'circle'],
+    ['Fresh Start Mint', 'cv', 'F', 'single', 'mint', 'inter', 'plain', 'pill', 'circle'],
+    ['Campus Blue', 'cv', 'F', 'compact', 'sky', 'poppins', 'underline', 'pill', 'rounded'],
+    ['Student Teal', 'cv', 'F', 'timeline', 'teal', 'poppins', 'plain', 'underline', 'circle'],
+    ['Graduate Olive', 'cv', 'F', 'cards', 'olive', 'inter', 'underline', 'leftbar', 'rounded'],
+    ['Bright Indigo', 'cv', 'F', 'split', 'indigo', 'poppins', 'underline', 'pill', 'circle'],
+    ['First Job Lavender', 'cv', 'F', 'center', 'lavender', 'poppins', 'plain', 'pill', 'circle'],
+    ['Soft Rose Biodata', 'bio', 'B', 'center', 'rose', 'tiro', 'mono', 'pill', 'circle'],
+    ['Royal Emerald Biodata', 'bio', 'B', 'left', 'emerald', 'merri', 'plain', 'underline', 'rounded'],
+    ['Classic Maroon Biodata', 'bio', 'B', 'single', 'burgundy', 'libre', 'underline', 'underline', 'square'],
+    ['Modern Teal Biodata', 'bio', 'B', 'cards', 'teal', 'hind', 'plain', 'pill', 'rounded'],
+    ['Golden Biodata', 'bio', 'BD', 'banner', 'gold', 'tiro', 'banner', 'underline', 'circle'],
+    ['Sky Biodata Minimal', 'bio', 'BM', 'minimal', 'sky', 'hind', 'plain', 'plain', 'circle'],
+    ['Navy Heritage Biodata', 'bio', 'B', 'split', 'navy', 'playfair', 'split', 'leftbar', 'square'],
+    ['Sunset Biodata', 'bio', 'B', 'hero', 'sunset', 'hind', 'plain', 'pill', 'rounded'],
+    ['Olive Family Biodata', 'bio', 'B', 'tintleft', 'olive', 'tiro', 'mono', 'underline', 'rounded'],
+    ['Dark Header Biodata Noir', 'bio', 'BD', 'banner', 'charcoal', 'dm', 'banner', 'pill', 'square']
+  ];
+  const PRESETS = PRESET_TUPLES.map(([name, mode, cats, layout, theme, font, header, section, photo], i) => ({
+    id: 'p' + (i + 1), name, mode, cats: cats.split(''),
+    d: { layout, theme, font, header, section, photo }
+  }));
+  const CATEGORIES = [
+    ['all', 'All'], ['P', 'Professional'], ['C', 'Creative'], ['M', 'Minimal'],
+    ['F', 'Fresher'], ['B', 'Biodata'], ['D', 'Dark Header']
+  ];
+  const catLabel = code => (CATEGORIES.find(c => c[0] === code) || [, code])[1];
+
+  /* =========================================================================
+     7.4  APP STATE
+     ========================================================================= */
+  const state = {
+    mode: 'cv',
+    design: { ...DEFAULT_DESIGN },
+    custom: { accent: null, dark: null, ink: null, headFont: null, bodyFont: null },
+    layout: { cv: defaultPrefs('cv'), bio: defaultPrefs('bio') },   // section order + hidden flags
+    cv: {
+      photo: '', name: '', title: '', phone: '', email: '', address: '', summary: '',
+      experience: [{ role: '', company: '', period: '', details: '' }],
+      education: [{ degree: '', institution: '', year: '' }],
+      skills: [], languages: '', references: ''
+    },
+    bio: {
+      photo: '', name: '', age: '', height: '', religion: '', education: '', profession: '',
+      family: '', address: '', expectations: '', contact: ''
+    }
+  };
+  const cur = () => state[state.mode];
+
+  const LIST_DEFS = {
+    experience: {
+      blank: () => ({ role: '', company: '', period: '', details: '' }),
+      fields: [
+        { key: 'role', label: 'Job title', placeholder: 'e.g. Frontend Developer' },
+        { key: 'company', label: 'Company', placeholder: 'e.g. Nexa Labs Ltd.' },
+        { key: 'period', label: 'Period', placeholder: 'e.g. 2021 – Present' },
+        { key: 'details', label: 'Responsibilities & achievements', type: 'textarea', placeholder: 'One achievement per line' }
+      ]
+    },
+    education: {
+      blank: () => ({ degree: '', institution: '', year: '' }),
+      fields: [
+        { key: 'degree', label: 'Degree / certificate', placeholder: 'e.g. B.Sc. in CSE' },
+        { key: 'institution', label: 'Institution', placeholder: 'e.g. University of Dhaka' },
+        { key: 'year', label: 'Year / result', placeholder: 'e.g. 2019 · CGPA 3.8' }
+      ]
+    }
+  };
+
+  /* =========================================================================
+     7.5  UTILITIES
+     ========================================================================= */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const esc = (v = '') => String(v).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const multi = v => esc(v).replace(/\n/g, '<br>');
+  const orPh = (v, ph) => (v && String(v).trim()) ? esc(v) : `<span class="ph">${esc(ph)}</span>`;
+  const orPhM = (v, ph) => (v && String(v).trim()) ? multi(v) : `<span class="ph">${esc(ph)}</span>`;
+  const hasAny = obj => Object.values(obj).some(v => String(v).trim() !== '');
+  const initialsOf = (name, fallback) =>
+    (name || '').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase() || fallback;
+
+  /* =========================================================================
+     7.6  SAMPLE DATA (used by "Load sample" and by gallery thumbnails)
+     ========================================================================= */
+  const SAMPLE = {
+    cv: {
+      photo: '',
+      name: 'Nusrat Jahan / নুসরাত জাহান',
+      title: 'Senior Frontend Engineer',
+      phone: '+880 1711-234567',
+      email: 'nusrat.jahan@example.com',
+      address: 'House 12, Road 5, Dhanmondi, Dhaka',
+      summary: '৭ বছরের অভিজ্ঞতাসম্পন্ন ফ্রন্টএন্ড ডেভেলপার। I build fast, accessible web products for fintech and e-commerce teams.\nExpert in React, TypeScript and design systems.',
+      experience: [
+        { role: 'Senior Frontend Engineer', company: 'Nexa Labs Ltd.', period: '2022 – Present', details: 'Led a team of 5 engineers\nCut page load time by 40% through code splitting' },
+        { role: 'Frontend Developer', company: 'BrightCart Tech', period: '2019 – 2022', details: 'Built checkout flows used by 2M+ monthly users' }
+      ],
+      education: [{ degree: 'B.Sc. in Computer Science & Engineering', institution: 'University of Dhaka', year: '2019' }],
+      skills: ['JavaScript', 'TypeScript', 'React', 'CSS', 'Node.js', 'Figma'],
+      languages: 'বাংলা (মাতৃভাষা), English (Fluent)',
+      references: 'Mr. Karim Hossain, Engineering Manager, Nexa Labs\n+880 1711-000000'
+    },
+    bio: {
+      photo: '',
+      name: 'ফাতেমা খাতুন',
+      age: '26 years',
+      height: '5 ft 4 in',
+      religion: 'Islam',
+      education: 'MBA (Finance), University of Dhaka',
+      profession: 'Assistant Manager, Private Bank',
+      family: 'Father: Md. Abdul Karim (Retired Teacher)\nMother: Rahima Begum (Housewife)\nSiblings: 1 Brother, 1 Sister',
+      address: 'Mirpur-10, Dhaka-1216',
+      expectations: 'Educated, family-oriented and understanding partner.',
+      contact: '+880 1712-345678\nfatima.sample@example.com'
+    }
+  };
+
+  /* =========================================================================
+     7.7  FORM RENDERING (lists, skill tags, photo thumbnails)
+     ========================================================================= */
+  function renderList(name) {
+    const def = LIST_DEFS[name];
+    const items = state.cv[name];
+    $('#' + name + '-list').innerHTML = items.map((item, i) => `
+      <div class="item-card">
+        <div class="item-head">
+          <span>Entry ${i + 1}</span>
+          <button type="button" class="link-btn danger" data-action="remove-item" data-list="${name}" data-idx="${i}">Remove</button>
+        </div>
+        <div class="grid-2">
+          ${def.fields.map(f => {
+            const common = `data-list="${name}" data-idx="${i}" data-sub="${f.key}" placeholder="${esc(f.placeholder || '')}"`;
+            const control = f.type === 'textarea'
+              ? `<textarea rows="3" ${common}>${esc(item[f.key])}</textarea>`
+              : `<input type="text" value="${esc(item[f.key])}" ${common}>`;
+            return `<label class="field ${f.type === 'textarea' ? 'span-2' : ''}"><span>${esc(f.label)}</span>${control}</label>`;
+          }).join('')}
+        </div>
+      </div>`).join('');
+  }
+
+  function renderSkills() {
+    $('#skills-chips').innerHTML = state.cv.skills.map((s, i) => `
+      <span class="chip">${esc(s)}<button type="button" data-action="remove-skill" data-idx="${i}" aria-label="Remove ${esc(s)}">×</button></span>`).join('');
+  }
+
+  function syncPhotoUI() {
+    const p = cur().photo;
+    $$('[data-photo-box]').forEach(box => { box.innerHTML = p ? `<img src="${p}" alt="Uploaded photo">` : 'No photo'; });
+    $$('[data-photo-clear]').forEach(btn => { btn.hidden = !p; });
+  }
+
+  function hydrateForm() {
+    $$('[data-key]', $('#form-' + state.mode)).forEach(el => {
+      const v = cur()[el.dataset.key];
+      if (v !== undefined) el.value = v;
+    });
+    if (state.mode === 'cv') { renderList('experience'); renderList('education'); renderSkills(); }
+    syncPhotoUI();
+  }
+
+  /* =========================================================================
+     7.8  PHOTO UPLOAD (FileReader -> data URL -> state -> preview)
+     ========================================================================= */
+  function handlePhoto(file, input) {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { alert('Please choose an image file.'); return; }
+    if (file.size > 5 * 1024 * 1024) { alert('Image is larger than 5 MB. Please choose a smaller one.'); return; }
+    const reader = new FileReader();
+    reader.onload = () => { cur().photo = reader.result; input.value = ''; syncPhotoUI(); renderPreview(); };
+    reader.onerror = () => alert('Could not read this image. Please try another file.');
+    reader.readAsDataURL(file);
+  }
+
+  /* =========================================================================
+     7.9  SKILL TAGS
+     ========================================================================= */
+  const skillInput = $('#skill-input');
+  function addSkills(raw) {
+    raw.split(',').map(s => s.trim()).filter(Boolean).forEach(s => {
+      if (!state.cv.skills.includes(s)) state.cv.skills.push(s);
+    });
+    skillInput.value = '';
+    renderSkills();
+    renderPreview();
+  }
+  skillInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault();
+      if (skillInput.value.trim()) addSkills(skillInput.value);
+    } else if (e.key === 'Backspace' && !skillInput.value && state.cv.skills.length) {
+      state.cv.skills.pop(); renderSkills(); renderPreview();
+    }
+  });
+  skillInput.addEventListener('blur', () => { if (skillInput.value.trim()) addSkills(skillInput.value); });
+
+  /* =========================================================================
+     7.10  DOCUMENT MODEL — every section is a block with an id, so the
+           customize panel can reorder and hide them. Both modes share it.
+     ========================================================================= */
+  const sec = (title, html) => `<section class="sec"><h2 class="sec-t">${title}</h2>${html}</section>`;
+
+  function headerInfo(mode, d) {
+    if (mode === 'cv') {
+      const ini = initialsOf(d.name, 'CV');
+      return {
+        initials: ini, photoPh: `<span class="ini">${esc(ini)}</span>`,
+        name: orPh(d.name, 'Your Name'), sub: orPh(d.title, 'Job Title'),
+        facts: [
+          { l: 'Phone', v: orPh(d.phone, 'Phone') },
+          { l: 'Email', v: orPh(d.email, 'Email') },
+          { l: 'Address', v: orPhM(d.address, 'Address') }
+        ]
+      };
+    }
+    return {
+      initials: initialsOf(d.name, 'BD'), photoPh: '<span class="ph-txt">Photo</span>',
+      name: orPh(d.name, 'Full Name'), sub: 'BIODATA <span class="bn">বৈবাহিক বায়োডাটা</span>',
+      facts: [
+        { l: 'Age <span class="bn">বয়স</span>', v: orPh(d.age, '—') },
+        { l: 'Height <span class="bn">উচ্চতা</span>', v: orPh(d.height, '—') },
+        { l: 'Religion <span class="bn">ধর্ম</span>', v: orPh(d.religion, '—') },
+        { l: 'Education <span class="bn">শিক্ষা</span>', v: orPh(d.education, '—') },
+        { l: 'Profession <span class="bn">পেশা</span>', v: orPh(d.profession, '—') },
+        { l: 'Address <span class="bn">ঠিকানা</span>', v: orPhM(d.address, '—') }
+      ]
+    };
+  }
+
+  /* Returns {sectionId: html}. Empty string = nothing to show for that section. */
+  function sectionMap(mode, d) {
+    if (mode === 'bio') {
+      return {
+        contact: sec('Contact <span class="bn">যোগাযোগ</span>', `<p class="txt">${orPhM(d.contact, 'Phone / email / guardian')}</p>`),
+        family: sec('Family Details <span class="bn">পারিবারিক তথ্য</span>', `<p class="txt">${orPhM(d.family, 'Father, mother, siblings…')}</p>`),
+        expectations: sec('Expectations <span class="bn">প্রত্যাশা</span>', `<p class="txt">${orPhM(d.expectations, 'Expectations from the life partner…')}</p>`)
+      };
+    }
+    const exp = d.experience.filter(hasAny);
+    const edu = d.education.filter(hasAny);
+    return {
+      skills: d.skills.length ? sec('Skills', `<div class="chips">${d.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>`) : '',
+      languages: d.languages.trim() ? sec('Languages', `<p class="txt">${multi(d.languages)}</p>`) : '',
+      profile: d.summary.trim() ? sec('Profile', `<p class="txt">${multi(d.summary)}</p>`) : '',
+      experience: exp.length ? sec('Work Experience', exp.map(x => `
+        <div class="entry">
+          <div class="entry-top"><strong>${esc(x.role)}</strong><span class="when">${esc(x.period)}</span></div>
+          <div class="entry-sub">${esc(x.company)}</div>
+          ${x.details.trim() ? `<p>${multi(x.details)}</p>` : ''}
+        </div>`).join('')) : '',
+      education: edu.length ? sec('Education', edu.map(x => `
+        <div class="entry">
+          <div class="entry-top"><strong>${esc(x.degree)}</strong><span class="when">${esc(x.year)}</span></div>
+          <div class="entry-sub">${esc(x.institution)}</div>
+        </div>`).join('')) : '',
+      references: d.references.trim() ? sec('References', `<p class="txt">${multi(d.references)}</p>`) : ''
+    };
+  }
+
+  /* Builds the five-region HTML using the section order and visibility in `prefs`.
+     No whitespace between regions, so an empty column matches :empty and collapses. */
+  function docHtml(mode, d, prefs, photo, shape) {
+    const h = headerInfo(mode, d);
+    const map = sectionMap(mode, d);
+    const regionHtml = reg => prefs.order
+      .filter(id => regionOf(mode, id) === reg && !prefs.hidden[id])
+      .map(id => map[id]).join('');
+    const photoInner = photo ? `<img src="${photo}" alt="">` : h.photoPh;
+    return `<div class="doc">` +
+      `<header class="hd"><span class="mono" aria-hidden="true">${esc(h.initials)}</span><div class="hd-txt"><h1 class="nm">${h.name}</h1><p class="sub">${h.sub}</p></div></header>` +
+      `<div class="pic"><div class="photo sh-${shape}">${photoInner}</div></div>` +
+      `<dl class="ft">${h.facts.map(f => `<div class="fact"><dt>${f.l}</dt><dd>${f.v}</dd></div>`).join('')}</dl>` +
+      `<div class="sd">${regionHtml('side')}</div>` +
+      `<div class="mn">${regionHtml('main')}</div>` +
+      `</div>`;
+  }
+
+  /* =========================================================================
+     7.11  DESIGN ENGINE — CSS variables, classes and auto-fit
+     ========================================================================= */
+  const catOf = family => {
+    const h = FONTS.find(f => f.head === family);
+    if (h) return { cat: h.headCat, w: h.headWeight };
+    const b = FONTS.find(f => f.body === family);
+    return { cat: b ? b.bodyCat : 'sans-serif', w: 700 };
+  };
+
+  /* Mix a #rrggbb colour towards white by amount t (0..1); returns hex */
+  function tintHex(hex, t) {
+    const m = /^#([0-9a-f]{6})$/i.exec(hex || '');
+    if (!m) return hex;
+    const n = parseInt(m[1], 16);
+    const ch = k => Math.round(((n >> k) & 255) * (1 - t) + 255 * t);
+    return '#' + [16, 8, 0].map(k => ch(k).toString(16).padStart(2, '0')).join('');
+  }
+
+  /* All theme + colour + font values as one object (used for the live paper AND gallery thumbnails) */
+  function themeVars(d, c) {
+    const t = THEMES.find(x => x.id === d.theme);
+    const f = FONTS.find(x => x.id === d.font);
+    const accent = c.accent || t.accent;
+    const dark = c.dark || t.dark;
+    const ink = c.ink || '#0f172a';
+    const head = c.headFont || f.head;
+    const body = c.bodyFont || f.body;
+    const hc = c.headFont ? catOf(head) : { cat: f.headCat, w: f.headWeight };
+    const bc = c.bodyFont ? catOf(body) : { cat: f.bodyCat };
+    return {
+      '--accent': accent, '--dark': dark, '--ink': ink,
+      // Plain hex tints (not color-mix) so html2canvas/jsPDF can read them during export
+      '--soft': tintHex(accent, 0.11),
+      '--tint': tintHex(accent, 0.06),
+      '--line-accent': tintHex(accent, 0.28),
+      '--on-dark-accent': tintHex(accent, 0.42),
+      '--f-head': `'${head}', 'Hind Siliguri', 'Noto Sans Bengali', ${hc.cat}`,
+      '--f-body': `'${body}', 'Hind Siliguri', 'Noto Sans Bengali', ${bc.cat}`,
+      '--fw-head': String(hc.w)
+    };
+  }
+
+  function paperClass(d) {
+    const L = LAYOUTS.find(x => x.id === d.layout);
+    return ['paper', `lay-${L.cls}`, L.bg ? `bg-${L.bg}` : '', L.row ? 'row-ft' : '', `hs-${d.header}`, `st-${d.section}`]
+      .filter(Boolean).join(' ');
+  }
+
+  /* =========================================================================
+     7.12  RENDER — builds the main paper from state
+     ========================================================================= */
+  function renderPreview() {
+    renderAll();          // builds the A4 pages (section 7.20)
+    commitHistory();      // undo + autosave (section 7.19)
+  }
+
+  /* =========================================================================
+     7.13  DESIGN CONTROLS — populate, read, sync, shuffle, reset
+     ========================================================================= */
+  const ctl = {
+    layout: $('#opt-layout'), theme: $('#opt-theme'), font: $('#opt-font'),
+    header: $('#opt-header'), section: $('#opt-section'), photo: $('#opt-photo'),
+    fs: $('#fs-range'), sp: $('#sp-range'), fit: $('#fit-one')
+  };
+
+  function populateControls() {
+    const opts = (list, labelFn = x => x.name) => list.map(x => `<option value="${x.id}">${esc(labelFn(x))}</option>`).join('');
+    ctl.layout.innerHTML = opts(LAYOUTS);
+    ctl.theme.innerHTML = opts(THEMES);
+    ctl.font.innerHTML = opts(FONTS);
+    ctl.header.innerHTML = opts(HEADERS);
+    ctl.section.innerHTML = opts(SECTIONS);
+    ctl.photo.innerHTML = opts(PHOTOS);
+    $('#combo-count').textContent = TOTAL_COMBOS.toLocaleString('en-US');
+    // Customize: font selects list every heading and body family used by the pairings
+    const heads = [...new Set(FONTS.map(f => f.head))];
+    const bodies = [...new Set(FONTS.map(f => f.body))];
+    $('#cz-head').innerHTML = heads.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+    $('#cz-body').innerHTML = bodies.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+    // Gallery filter chips
+    $('#gal-filters').innerHTML = CATEGORIES.map(([id, name]) =>
+      `<button type="button" class="chip-btn" data-action="filter" data-cat="${id}" aria-pressed="${id === 'all'}">${esc(name)}</button>`).join('');
+  }
+
+  function syncControls() {
+    const d = state.design;
+    ctl.layout.value = d.layout; ctl.theme.value = d.theme; ctl.font.value = d.font;
+    ctl.header.value = d.header; ctl.section.value = d.section; ctl.photo.value = d.photo;
+    ctl.fs.value = d.fs; ctl.sp.value = d.sp;
+    $('#out-fs').textContent = d.fs + '%';
+    $('#out-sp').textContent = d.sp + '%';
+    ctl.fit.checked = !!d.fit;
+    $('#out-margin').textContent = MARGIN_LABEL[d.margin];
+    $$('[data-action="set-margin"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.margin === d.margin)));
+    const t = THEMES.find(x => x.id === d.theme);
+    $('#swatch').innerHTML = `<i style="background:${t.accent}"></i><i style="background:${t.dark}"></i>`;
+  }
+
+  function readControls() {
+    const d = state.design;
+    d.layout = ctl.layout.value; d.theme = ctl.theme.value; d.font = ctl.font.value;
+    d.header = ctl.header.value; d.section = ctl.section.value; d.photo = ctl.photo.value;
+    d.fs = +ctl.fs.value; d.sp = +ctl.sp.value;
+    d.fit = ctl.fit.checked;
+  }
+
+  function clearCustomColors() { state.custom.accent = state.custom.dark = state.custom.ink = null; }
+  function clearCustomFonts() { state.custom.headFont = state.custom.bodyFont = null; }
+
+  function shuffleDesign() {
+    const d = state.design;
+    d.layout = pick(LAYOUTS).id;
+    d.theme = pick(THEMES).id;
+    d.font = pick(FONTS).id;
+    d.header = pick(HEADERS).id;
+    d.section = pick(SECTIONS).id;
+    d.photo = pick(PHOTOS).id;
+    clearCustomColors(); clearCustomFonts();   // so the shuffled theme/fonts are actually visible
+    syncControls(); syncCustomize(); renderPreview();
+  }
+
+  function resetDesign() {
+    state.design = { ...DEFAULT_DESIGN };
+    state.custom = { accent: null, dark: null, ink: null, headFont: null, bodyFont: null };
+    state.layout = { cv: defaultPrefs('cv'), bio: defaultPrefs('bio') };
+    syncControls(); syncCustomize(); renderPreview();
+  }
+
+  /* =========================================================================
+     7.14  CUSTOMIZE PANEL — colours, fonts, section order and visibility
+     ========================================================================= */
+  function syncCustomize() {
+    const d = state.design, c = state.custom;
+    const t = THEMES.find(x => x.id === d.theme);
+    const f = FONTS.find(x => x.id === d.font);
+    $('#cz-accent').value = c.accent || t.accent;
+    $('#cz-dark').value = c.dark || t.dark;
+    $('#cz-ink').value = c.ink || '#0f172a';
+    $('#cz-head').value = c.headFont || f.head;
+    $('#cz-body').value = c.bodyFont || f.body;
+    renderSectionList();
+  }
+
+  function renderSectionList() {
+    const mode = state.mode;
+    const prefs = state.layout[mode];
+    const map = sectionMap(mode, state[mode]);
+    const defs = SECTION_DEFS[mode];
+    $('#sec-list').innerHTML = prefs.order.map(id => {
+      const def = defs.find(s => s.id === id);
+      const hidden = !!prefs.hidden[id];
+      const empty = !map[id];
+      const sameRegion = prefs.order.filter(x => regionOf(mode, x) === def.region);
+      const idx = sameRegion.indexOf(id);
+      const status = empty ? 'No content yet — hidden automatically' : hidden ? 'Hidden' : 'Shown';
+      return `
+        <li draggable="true" data-id="${id}" class="${hidden ? 'is-hidden' : ''}">
+          <span class="drag-handle" title="Drag to reorder">⋮⋮</span>
+          <div>
+            <div class="sec-name">${esc(def.label)}</div>
+            <div class="sec-meta">${def.region === 'side' ? 'Sidebar' : 'Main column'} · ${status}</div>
+          </div>
+          <div class="row-btns">
+            <button type="button" class="icon-btn" data-action="sec-up" data-id="${id}" title="Move up" ${idx === 0 ? 'disabled' : ''}>↑</button>
+            <button type="button" class="icon-btn" data-action="sec-down" data-id="${id}" title="Move down" ${idx === sameRegion.length - 1 ? 'disabled' : ''}>↓</button>
+            <button type="button" class="icon-btn" data-action="sec-toggle" data-id="${id}" aria-pressed="${!hidden}" title="${hidden ? 'Show' : 'Hide'} section">${hidden ? '🙈' : '👁'}</button>
+          </div>
+        </li>`;
+    }).join('');
+  }
+
+  /* Up/down swaps with the neighbour in the same column only */
+  function moveSection(mode, id, dir) {
+    const prefs = state.layout[mode];
+    const reg = regionOf(mode, id);
+    const same = prefs.order.filter(x => regionOf(mode, x) === reg);
+    const i = same.indexOf(id), j = i + dir;
+    if (j < 0 || j >= same.length) return;
+    const a = prefs.order.indexOf(id), b = prefs.order.indexOf(same[j]);
+    [prefs.order[a], prefs.order[b]] = [prefs.order[b], prefs.order[a]];
+  }
+
+  /* Drag-and-drop: insert the dragged section before the target (same column only) */
+  function moveBefore(mode, dragId, targetId) {
+    if (dragId === targetId || regionOf(mode, dragId) !== regionOf(mode, targetId)) return;
+    const prefs = state.layout[mode];
+    prefs.order = prefs.order.filter(x => x !== dragId);
+    prefs.order.splice(prefs.order.indexOf(targetId), 0, dragId);
+  }
+
+  const czCard = $('#customize-card');
+  const secList = $('#sec-list');
+  let dragId = null;
+
+  secList.addEventListener('dragstart', e => {
+    const li = e.target.closest('li[data-id]');
+    if (!li) return;
+    dragId = li.dataset.id;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dragId);
+  });
+  secList.addEventListener('dragover', e => {
+    const li = e.target.closest('li[data-id]');
+    if (!li || !dragId || regionOf(state.mode, li.dataset.id) !== regionOf(state.mode, dragId)) return;
+    e.preventDefault();
+    $$('li', secList).forEach(x => x.classList.toggle('dragover', x === li));
+  });
+  secList.addEventListener('drop', e => {
+    e.preventDefault();
+    const li = e.target.closest('li[data-id]');
+    if (li && dragId) { moveBefore(state.mode, dragId, li.dataset.id); renderSectionList(); renderPreview(); }
+    dragId = null;
+  });
+  secList.addEventListener('dragend', () => {
+    dragId = null;
+    $$('li', secList).forEach(x => x.classList.remove('dragover'));
+  });
+
+  // Colour pickers and font selects
+  ['input', 'change'].forEach(type => czCard.addEventListener(type, e => {
+    const id = e.target.id;
+    if (id === 'cz-accent') state.custom.accent = e.target.value;
+    else if (id === 'cz-dark') state.custom.dark = e.target.value;
+    else if (id === 'cz-ink') state.custom.ink = e.target.value;
+    else if (id === 'cz-head') state.custom.headFont = e.target.value;
+    else if (id === 'cz-body') state.custom.bodyFont = e.target.value;
+    else return;
+    renderPreview();
+  }));
+
+  /* =========================================================================
+     7.15  TEMPLATE GALLERY — live thumbnails, filters, one-click apply
+     ========================================================================= */
+  function buildGallery() {
+    $('#gal-grid').innerHTML = PRESETS.map(p => {
+      const data = p.mode === 'cv' ? SAMPLE.cv : SAMPLE.bio;
+      const style = Object.entries(themeVars(p.d, {})).map(([k, v]) => `${k}:${v}`).join(';');
+      return `
+        <button type="button" class="tpl" data-action="preset" data-id="${p.id}" data-cats="${p.cats.join('')}">
+          <div class="thumb">
+            <div class="${paperClass(p.d)} mini" style="${style}">${docHtml(p.mode, data, defaultPrefs(p.mode), '', p.d.photo)}</div>
+          </div>
+          <span class="tpl-name">${esc(p.name)}</span>
+          <span class="tpl-meta">${p.mode === 'cv' ? 'Job CV' : 'Biodata'} · ${p.cats.map(catLabel).join(', ')}</span>
+        </button>`;
+    }).join('');
+    $('#gal-count').textContent = PRESETS.length + ' curated templates · click one to apply it instantly';
+  }
+
+  function filterGallery(cat) {
+    $$('#gal-filters .chip-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+    $$('#gal-grid .tpl').forEach(t => { t.hidden = !(cat === 'all' || t.dataset.cats.includes(cat)); });
+  }
+
+  function applyPreset(id) {
+    const p = PRESETS.find(x => x.id === id);
+    state.design = { ...DEFAULT_DESIGN, ...p.d, margin: state.design.margin, fit: state.design.fit };   // page margin and fit are not part of a template
+    state.custom = { accent: null, dark: null, ink: null, headFont: null, bodyFont: null };
+    state.layout = { cv: defaultPrefs('cv'), bio: defaultPrefs('bio') };
+    setMode(p.mode);           // a Biodata preset switches to Biodata mode
+    syncControls();
+    syncCustomize();
+    renderPreview();
+    $('#gallery').close();
+  }
+
+  /* =========================================================================
+     7.16  MODE SWITCH & MOBILE VIEW TABS
+     ========================================================================= */
+  function setMode(mode) {
+    state.mode = mode;
+    document.body.dataset.mode = mode;
+    $$('[data-action="set-mode"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+    $('#form-cv').hidden = mode !== 'cv';
+    $('#form-bio').hidden = mode !== 'bio';
+    hydrateForm();
+    syncCustomize();
+    renderPreview();
+  }
+
+  function setView(view) {
+    document.body.dataset.view = view;
+    $$('[data-action="set-view"]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === view)));
+  }
+
+  function loadSample() {
+    hist.lastTime = 0;   // loading a sample is its own undo step
+    Object.assign(state[state.mode], clone(SAMPLE[state.mode]));
+    hydrateForm();
+    renderPreview();
+  }
+
+  /* =========================================================================
+     7.17  EXPORT — print (main), image-based PDF (fallback), PNG and JPG
+     ========================================================================= */
+
+  /* ---- Toast: loading and result messages ---- */
+  const toastEl = $('#toast');
+  const toastMsg = $('#toast-msg');
+  const toastSpin = toastEl.querySelector('.spinner');
+  let toastTimer = null;
+  function toast(msg, { kind = 'info', busy = false, ms = 4000 } = {}) {
+    toastEl.hidden = false;
+    toastEl.dataset.kind = kind;
+    toastMsg.textContent = msg;
+    toastSpin.hidden = !busy;
+    clearTimeout(toastTimer);
+    if (!busy) toastTimer = setTimeout(() => { toastEl.hidden = true; }, ms);
+  }
+
+  /* ---- Export menu ---- */
+  const exportBtn = $('#export-btn');
+  const exportMenu = $('#export-menu');
+  function setMenu(open) {
+    exportMenu.hidden = !open;
+    exportBtn.setAttribute('aria-expanded', String(open));
+  }
+
+  /* ---- One export at a time, with busy state and error handling ---- */
+  let exporting = false;
+  async function runExport(busyMsg, doneMsg, fn) {
+    if (exporting) { toast('An export is already running. Please wait…'); return; }
+    exporting = true;
+    exportBtn.disabled = true;
+    exportBtn.textContent = '⏳ Working…';
+    toast(busyMsg + '…', { busy: true });
+    try {
+      await fn();
+      toast('✅ ' + doneMsg, { kind: 'success' });
+    } catch (err) {
+      console.error('[export]', err);
+      toast('⚠️ ' + (err.userMessage || ('Export failed: ' + (err.message || 'unknown error'))), { kind: 'error', ms: 10000 });
+    } finally {
+      exporting = false;
+      exportBtn.disabled = false;
+      exportBtn.textContent = '⬇ Export ▾';
+    }
+  }
+
+  /* ---- CDN loader (html2canvas + jsPDF from cdnjs), loaded only when needed ---- */
+  const CDN = {
+    html2canvas: 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
+    jspdf: 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+  };
+  const loading = {};
+  function loadScript(url, globalName, timeoutMs = 20000) {
+    if (window[globalName]) return Promise.resolve(window[globalName]);
+    if (loading[url]) return loading[url];
+    loading[url] = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      const fail = msg => { clearTimeout(timer); s.remove(); delete loading[url]; reject(new Error(msg)); };
+      const timer = setTimeout(() => fail('timeout loading ' + url), timeoutMs);
+      s.src = url;
+      s.async = true;
+      s.onload = () => {
+        clearTimeout(timer);
+        if (window[globalName]) resolve(window[globalName]);
+        else fail(globalName + ' missing after load');
+      };
+      s.onerror = () => fail('network error loading ' + url);
+      document.head.appendChild(s);
+    });
+    return loading[url];
+  }
+  const libError = msg => Object.assign(new Error(msg), {
+    userMessage: 'The export library could not be loaded from the CDN. Check your internet connection and try again, or use Print / Save as PDF.'
+  });
+  async function getHtml2Canvas() {
+    try { return await loadScript(CDN.html2canvas, 'html2canvas'); }
+    catch (e) { throw libError(e.message); }
+  }
+  async function getJsPDF() {
+    try { await loadScript(CDN.jspdf, 'jspdf'); return window.jspdf.jsPDF; }
+    catch (e) { throw libError(e.message); }
+  }
+
+  /* ---- Helpers ---- */
+  const nextFrame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const withTimeout = (p, ms) => Promise.race([p, new Promise(r => setTimeout(r, ms))]);
+  async function ensureFonts() {
+    if (!document.fonts) return;
+    const d = state.design;
+    const f = FONTS.find(x => x.id === d.font);
+    const head = state.custom.headFont || f.head;
+    const body = state.custom.bodyFont || f.body;
+    // Make sure the Latin and Bangla faces are actually downloaded before rasterising
+    const loads = [
+      document.fonts.load(`700 16px '${head}'`), document.fonts.load(`400 16px '${body}'`),
+      document.fonts.load(`700 16px 'Hind Siliguri'`), document.fonts.load(`400 16px 'Hind Siliguri'`)
+    ];
+    await withTimeout(Promise.allSettled(loads).then(() => document.fonts.ready), 8000);
+  }
+  const PX_LIMIT = 16000;   // browsers refuse canvases taller than this
+  async function captureCanvas(el, wantedScale) {
+    const html2canvas = await getHtml2Canvas();
+    await ensureFonts();
+    const h = el.getBoundingClientRect().height;
+    const scale = Math.min(wantedScale, PX_LIMIT / h);
+    try {
+      return await html2canvas(el, { scale, backgroundColor: '#ffffff', useCORS: true, logging: false, imageTimeout: 15000 });
+    } catch (e) {
+      throw Object.assign(new Error('html2canvas: ' + e.message), { userMessage: 'The preview could not be rendered to an image. Try Print / Save as PDF instead.' });
+    }
+  }
+  const canvasToBlob = (c, type, q) => new Promise((res, rej) =>
+    c.toBlob(b => (b ? res(b) : rej(Object.assign(new Error('encode failed'), { userMessage: 'The image could not be encoded.' }))), type, q));
+  function download(blob, name) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  }
+  const fileName = ext => `${state.mode === 'cv' ? 'job-cv' : 'biodata'}-${new Date().toISOString().slice(0, 10)}.${ext}`;
+
+  /* ---- 1) PRINT (main method): window.print() with the @media print A4 stylesheet ---- */
+  async function exportPrint() {
+    try {
+      await document.fonts.ready;          // Bangla and Latin faces are loaded before the print dialog opens
+      await ensureFonts();
+      window.print();
+    } catch (e) {
+      toast('Printing is blocked here, so the PDF is being built as an image instead.', { busy: true });
+      await exportImagePdf();
+    }
+  }
+
+  /* ---- Shared rasteriser: one canvas per A4 page, drawn without the preview scale ---- */
+  const PX_PER_MM = 96 / 25.4;
+  const EXPORT_W = 2480, EXPORT_H = 3508;            // A4 at 300 dpi
+  async function pageCanvases(scale) {
+    await document.fonts.ready;                      // Hind Siliguri and the Latin faces are decoded first
+    await ensureFonts();
+    document.body.classList.add('exporting');
+    try {
+      await nextFrame();
+      const pages = $$('#paper-stack .paper');
+      const out = [];
+      for (let i = 0; i < pages.length; i++) {
+        toast(`Rendering page ${i + 1} of ${pages.length}…`, { busy: true });
+        out.push(await captureCanvas(pages[i], scale));
+      }
+      return out;
+    } finally {
+      document.body.classList.remove('exporting');
+    }
+  }
+
+  /* ---- 2) FALLBACK PDF (html2canvas scale 3 + jsPDF, A4 in mm, one image per page) ---- */
+  async function exportImagePdf() {
+    const JsPDF = await getJsPDF();
+    const canvases = await pageCanvases(3);
+    const pdf = new JsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait', compress: true });
+    canvases.forEach((c, i) => {
+      if (i) pdf.addPage('a4', 'portrait');
+      pdf.addImage(c.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297);
+    });
+    download(pdf.output('blob'), fileName('pdf'));
+  }
+
+  /* ---- 3) PNG and 4) JPG — every page at exactly 2480 x 3508 px (A4, 300 dpi) ---- */
+  function toA4Pixels(src) {
+    const c = document.createElement('canvas');
+    c.width = EXPORT_W; c.height = EXPORT_H;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, EXPORT_W, EXPORT_H);
+    ctx.drawImage(src, 0, 0, EXPORT_W, EXPORT_H);
+    return c;
+  }
+  async function exportImages(type, ext, quality) {
+    const canvases = await pageCanvases(EXPORT_W / (PAGE_W_MM * PX_PER_MM));   // ≈ 3.125 → 2480 px wide
+    for (let i = 0; i < canvases.length; i++) {
+      const blob = await canvasToBlob(toA4Pixels(canvases[i]), type, quality);
+      const name = fileName(ext);
+      download(blob, canvases.length > 1 ? name.replace(/\.(\w+)$/, `-page-${i + 1}.$1`) : name);
+    }
+    return canvases.length;
+  }
+  async function exportPng() { await exportImages('image/png', 'png'); }
+  async function exportJpg() { await exportImages('image/jpeg', 'jpg', 0.95); }
+
+  document.addEventListener('click', e => { if (!e.target.closest('#export')) setMenu(false); });
+
+  /* =========================================================================
+     7.17  EVENT WIRING
+     ========================================================================= */
+
+  // Design controls (Layout, Theme, Font, Header, Section, Photo, sliders)
+  const designCard = $('#design-card');
+  ['change', 'input'].forEach(type => designCard.addEventListener(type, () => {
+    const prev = { ...state.design };
+    readControls();
+    // Picking a new theme or font pairing should show through, so drop the matching manual overrides
+    if (prev.theme !== state.design.theme) clearCustomColors();
+    if (prev.font !== state.design.font) clearCustomFonts();
+    syncControls(); syncCustomize(); renderPreview();
+  }));
+
+  // Typing in form fields: write to state, then re-render the preview live
+  document.addEventListener('input', e => {
+    const el = e.target;
+    if (el.dataset.key) cur()[el.dataset.key] = el.value;
+    else if (el.dataset.list) state.cv[el.dataset.list][+el.dataset.idx][el.dataset.sub] = el.value;
+    else return;
+    runChecks();
+    renderPreview();
+  });
+
+  document.addEventListener('change', e => {
+    if (e.target.matches('[data-photo-input]')) handlePhoto(e.target.files[0], e.target);
+    if (e.target.matches('[data-json-input]')) { importJson(e.target.files[0]); e.target.value = ''; }
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const { action, list, idx, mode, view, id, cat } = btn.dataset;
+    const prefs = state.layout[state.mode];
+    switch (action) {
+      case 'set-mode':     setMode(mode); return;
+      case 'set-view':     setView(view); return;
+      case 'shuffle':      shuffleDesign(); return;
+      case 'reset-design': resetDesign(); return;
+      case 'sample':       loadSample(); return;
+      case 'undo':         undo(); return;
+      case 'set-margin':   state.design.margin = btn.dataset.margin; syncControls(); break;
+      case 'toggle-dark':  setDark(!document.documentElement.classList.contains('ui-dark')); return;
+      case 'clear-all':    clearAllData(); return;
+      case 'export-json':  exportJson(); return;
+      case 'export-toggle': setMenu(exportMenu.hidden); return;
+      case 'export-print':  setMenu(false); runExport('Opening print dialog', 'Print dialog closed. Choose "Save as PDF" as the destination.', exportPrint); return;
+      case 'export-pdf-image': setMenu(false); runExport('Building PDF', 'PDF downloaded', exportImagePdf); return;
+      case 'export-png':    setMenu(false); runExport('Rendering PNG', 'PNG downloaded', exportPng); return;
+      case 'export-jpg':    setMenu(false); runExport('Rendering JPG', 'JPG downloaded', exportJpg); return;
+      case 'open-gallery': $('#gallery').showModal(); sizeThumbs(); return;
+      case 'close-gallery': $('#gallery').close(); return;
+      case 'filter':       filterGallery(cat); return;
+      case 'preset':       applyPreset(id); return;
+      case 'reset-colors': clearCustomColors(); syncCustomize(); renderPreview(); return;
+      case 'reset-fonts':  clearCustomFonts(); syncCustomize(); renderPreview(); return;
+      case 'sec-toggle':   prefs.hidden[id] = !prefs.hidden[id]; renderSectionList(); renderPreview(); return;
+      case 'sec-up':       moveSection(state.mode, id, -1); renderSectionList(); renderPreview(); return;
+      case 'sec-down':     moveSection(state.mode, id, 1); renderSectionList(); renderPreview(); return;
+      case 'add-item':     state.cv[list].push(LIST_DEFS[list].blank()); renderList(list); break;
+      case 'remove-item':  state.cv[list].splice(+idx, 1); renderList(list); break;
+      case 'remove-skill': state.cv.skills.splice(+idx, 1); renderSkills(); break;
+      case 'clear-photo':  cur().photo = ''; syncPhotoUI(); break;
+    }
+    renderPreview();
+  });
+
+  // Block form submits (the forms are app-controlled), but let dialog forms close their dialog
+  document.addEventListener('submit', e => { if (!e.target.closest('dialog')) e.preventDefault(); });
+
+  /* =========================================================================
+     7.19  POLISH — safe storage, autosave, undo, JSON backup, validation, dark UI
+     ========================================================================= */
+
+  /* ---- 7.19a Storage: every access is guarded, so the app works without it ---- */
+  const STORE_KEY = 'cvmaker.v3';
+  const UI_KEY = 'cvmaker.ui';
+  function storage() {
+    try {
+      const s = window.localStorage, t = '__cvmaker_probe__';
+      s.setItem(t, '1'); s.removeItem(t);
+      return s;
+    } catch (e) { return null; }      // blocked: private mode, disabled cookies, sandboxed frame…
+  }
+  const store = {
+    get(key) { try { const s = storage(); return s ? s.getItem(key) : null; } catch (e) { return null; } },
+    set(key, value) { const s = storage(); if (!s) throw new Error('storage unavailable'); s.setItem(key, value); }
+  };
+  function setSaveStatus(msg) { const el = $('#save-status'); if (el) el.textContent = msg; }
+
+  /* ---- 7.19b Data model: blank data, and validation of anything loaded from outside ---- */
+  const BLANK = {
+    cv: () => ({
+      photo: '', name: '', title: '', phone: '', email: '', address: '', summary: '',
+      experience: [LIST_DEFS.experience.blank()], education: [LIST_DEFS.education.blank()],
+      skills: [], languages: '', references: ''
+    }),
+    bio: () => ({
+      photo: '', name: '', age: '', height: '', religion: '', education: '', profession: '',
+      family: '', address: '', expectations: '', contact: ''
+    })
+  };
+  const TEXT_MAX = 4000;
+  const txt = v => (typeof v === 'string' ? v.slice(0, TEXT_MAX) : '');
+  const oneOf = (v, list, fallback) => (list.some(x => x.id === v) ? v : fallback);
+  const hexOr = v => (typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v) ? v : null);
+  const fontOr = (v, list) => (typeof v === 'string' && list.includes(v) ? v : null);
+  const headFonts = () => [...new Set(FONTS.map(f => f.head))];
+  const bodyFonts = () => [...new Set(FONTS.map(f => f.body))];
+
+  function normalizeSection(mode, raw) {
+    const base = BLANK[mode]();
+    const src = raw && typeof raw === 'object' ? raw : {};
+    const out = {};
+    Object.keys(base).forEach(k => {
+      if (k === 'photo') {
+        out.photo = typeof src.photo === 'string' && /^data:image\/(png|jpe?g|gif|webp);base64,/.test(src.photo) ? src.photo : '';
+      } else if (k === 'experience' || k === 'education') {
+        const def = LIST_DEFS[k];
+        const items = Array.isArray(src[k]) ? src[k].slice(0, 30) : [];
+        out[k] = items.map(item => {
+          const o = def.blank();
+          Object.keys(o).forEach(f => { o[f] = txt(item && item[f]); });
+          return o;
+        });
+        if (!out[k].length) out[k] = [def.blank()];
+      } else if (k === 'skills') {
+        const list = Array.isArray(src.skills) ? src.skills : [];
+        out.skills = [...new Set(list.filter(x => typeof x === 'string').map(x => x.trim().slice(0, 60)).filter(Boolean))].slice(0, 60);
+      } else {
+        out[k] = txt(src[k]);
+      }
+    });
+    return out;
+  }
+
+  function normalizeDesign(raw) {
+    const r = raw && typeof raw === 'object' ? raw : {};
+    const num = (v, lo, hi, d) => (Number.isFinite(+v) ? Math.min(hi, Math.max(lo, Math.round(+v / 5) * 5)) : d);
+    return {
+      layout: oneOf(r.layout, LAYOUTS, DEFAULT_DESIGN.layout),
+      theme: oneOf(r.theme, THEMES, DEFAULT_DESIGN.theme),
+      font: oneOf(r.font, FONTS, DEFAULT_DESIGN.font),
+      header: oneOf(r.header, HEADERS, DEFAULT_DESIGN.header),
+      section: oneOf(r.section, SECTIONS, DEFAULT_DESIGN.section),
+      photo: oneOf(r.photo, PHOTOS, DEFAULT_DESIGN.photo),
+      fs: num(r.fs, 70, 130, 100),
+      sp: num(r.sp, 60, 140, 100),
+      margin: ['narrow', 'normal', 'wide'].includes(r.margin) ? r.margin : 'normal',
+      fit: r.fit === true
+    };
+  }
+
+  function normalizePrefs(mode, raw) {
+    const ids = defaultPrefs(mode).order;
+    const src = raw && typeof raw === 'object' ? raw : {};
+    const given = Array.isArray(src.order) ? [...new Set(src.order.filter(id => ids.includes(id)))] : [];
+    const hidden = {};
+    ids.forEach(id => { if (src.hidden && src.hidden[id] === true) hidden[id] = true; });
+    return { order: [...given, ...ids.filter(id => !given.includes(id))], hidden };
+  }
+
+  function normalizeAll(raw) {
+    const r = raw && typeof raw === 'object' ? raw : {};
+    const c = r.custom && typeof r.custom === 'object' ? r.custom : {};
+    const l = r.layout && typeof r.layout === 'object' ? r.layout : {};
+    return {
+      mode: r.mode === 'bio' ? 'bio' : 'cv',
+      design: normalizeDesign(r.design),
+      custom: {
+        accent: hexOr(c.accent), dark: hexOr(c.dark), ink: hexOr(c.ink),
+        headFont: fontOr(c.headFont, headFonts()), bodyFont: fontOr(c.bodyFont, bodyFonts())
+      },
+      layout: { cv: normalizePrefs('cv', l.cv), bio: normalizePrefs('bio', l.bio) },
+      cv: normalizeSection('cv', r.cv),
+      bio: normalizeSection('bio', r.bio)
+    };
+  }
+
+  /* ---- 7.19c Snapshots: shared by undo, autosave, backup and restore ---- */
+  function takeSnap() {
+    // Photos are plain strings, shared by reference rather than copied on every edit
+    const s = structuredClone({
+      mode: state.mode, design: state.design, custom: state.custom, layout: state.layout,
+      cv: { ...state.cv, photo: '' }, bio: { ...state.bio, photo: '' }
+    });
+    s.cv.photo = state.cv.photo;
+    s.bio.photo = state.bio.photo;
+    return s;
+  }
+  const snapKey = s => JSON.stringify(s, (k, v) => (k === 'photo' && typeof v === 'string' ? v.length + ':' + v.slice(-48) : v));
+
+  let restoring = false;   // true while a snapshot is being applied: no undo entry, no autosave loop
+  function loadSnap(s) {
+    const copy = structuredClone({ ...s, cv: { ...s.cv, photo: '' }, bio: { ...s.bio, photo: '' } });
+    copy.cv.photo = s.cv.photo;
+    copy.bio.photo = s.bio.photo;
+    restoring = true;
+    try {
+      Object.assign(state, copy);
+      setMode(state.mode);          // rebuilds the forms, preview and section list
+      syncControls();
+      syncCustomize();
+      runChecks();
+    } finally { restoring = false; }
+  }
+
+  /* ---- 7.19d Undo: edits made within 1 second form one step; Ctrl/Cmd+Z also works ---- */
+  const hist = { undo: [], last: null, lastKey: '', lastTime: 0 };
+  const HISTORY_MAX = 50;
+  const BURST_MS = 1000;
+  function updateUndoBtn() { const b = $('#undo-btn'); if (b) b.disabled = hist.undo.length === 0; }
+  function resetHistory() {
+    hist.undo = []; hist.last = takeSnap(); hist.lastKey = snapKey(hist.last); hist.lastTime = 0;
+    updateUndoBtn();
+  }
+  function commitHistory() {
+    if (restoring) return;
+    const snap = takeSnap(), key = snapKey(snap);
+    if (key === hist.lastKey) return;
+    const now = Date.now();
+    if (hist.last && now - hist.lastTime > BURST_MS) {   // a new burst starts: remember the state before it
+      hist.undo.push(hist.last);
+      if (hist.undo.length > HISTORY_MAX) hist.undo.shift();
+    }
+    hist.last = snap; hist.lastKey = key; hist.lastTime = now;
+    updateUndoBtn();
+    scheduleSave();
+  }
+  function commitNow() { hist.lastTime = 0; commitHistory(); }
+  function undo() {
+    if (!hist.undo.length) return;
+    loadSnap(hist.undo.pop());
+    hist.last = takeSnap(); hist.lastKey = snapKey(hist.last); hist.lastTime = 0;
+    updateUndoBtn();
+    scheduleSave();
+    toast('Undid the last change', { ms: 2000 });
+  }
+
+  /* ---- 7.19e Autosave (debounced; falls back to text-only if the photo is too big) ---- */
+  let saveTimer = 0;
+  const timeNow = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 400); }
+  function saveNow() {
+    const snap = takeSnap();
+    try {
+      store.set(STORE_KEY, JSON.stringify({ v: 3, savedAt: Date.now(), ...snap }));
+      setSaveStatus('✓ Saved in this browser · ' + timeNow());
+    } catch (e) {
+      try {
+        store.set(STORE_KEY, JSON.stringify({ v: 3, savedAt: Date.now(), ...snap,
+          cv: { ...snap.cv, photo: '' }, bio: { ...snap.bio, photo: '' } }));
+        setSaveStatus('Saved text only · the photo is too large for browser storage');
+      } catch (e2) {
+        setSaveStatus('Autosave unavailable · use Export JSON to keep a copy');
+      }
+    }
+  }
+  function restoreSaved() {
+    const raw = store.get(STORE_KEY);
+    if (!raw) return 'none';
+    try { loadSnap(normalizeAll(JSON.parse(raw))); return 'ok'; }
+    catch (e) { return 'bad'; }
+  }
+
+  /* ---- 7.19f JSON backup: export, validated import (undoable), clear all with confirmation ---- */
+  function exportJson() {
+    const doc = { app: 'cv-biodata-maker', version: 3, exportedAt: new Date().toISOString(), data: takeSnap() };
+    download(new Blob([JSON.stringify(doc, null, 2)], { type: 'application/json' }),
+      'cv-biodata-backup-' + new Date().toISOString().slice(0, 10) + '.json');
+    toast('Backup downloaded', { kind: 'success' });
+  }
+  async function importJson(file) {
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) { toast('That file is over 10 MB, so it is not a CV Maker backup.', { kind: 'error', ms: 6000 }); return; }
+    let body;
+    try {
+      const raw = JSON.parse(await file.text());
+      body = raw && raw.data && typeof raw.data === 'object' ? raw.data : raw;
+      if (!body || typeof body !== 'object' || !('cv' in body || 'bio' in body || 'design' in body)) throw new Error('shape');
+    } catch (e) {
+      toast('This is not a valid CV Maker backup (a JSON file is expected).', { kind: 'error', ms: 6000 });
+      return;
+    }
+    loadSnap(normalizeAll(body));
+    commitNow();
+    toast('Backup imported · press ↶ Undo to go back', { kind: 'success', ms: 5000 });
+  }
+  function askConfirm({ title, message, okLabel }) {
+    const d = $('#confirm');
+    $('#confirm-title').textContent = title;
+    $('#confirm-msg').textContent = message;
+    $('#confirm-ok').textContent = okLabel;
+    return new Promise(resolve => {
+      d.addEventListener('close', () => resolve(d.returnValue === 'ok'), { once: true });
+      d.showModal();
+    });
+  }
+  async function clearAllData() {
+    const ok = await askConfirm({
+      title: 'Clear all form data?',
+      okLabel: 'Clear everything',
+      message: 'This empties both the Job CV and the Biodata forms, including photos and skills. Your template, colours and layout stay. You can still undo this with ↶ Undo.'
+    });
+    if (!ok) return;
+    loadSnap({ ...takeSnap(), cv: BLANK.cv(), bio: BLANK.bio() });
+    commitNow();
+    toast('All form data cleared · press ↶ Undo to restore it', { kind: 'success', ms: 6000 });
+  }
+
+  /* ---- 7.19g Input validation hints (shown under the field; never block typing) ---- */
+  const CHECKS = {
+    email: v => (!v.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Check the email. It should look like name@example.com'),
+    phone: v => {
+      const t = v.trim();
+      if (!t) return '';
+      const digits = (t.match(/[0-9০-৯]/g) || []).length;
+      return /^[+0-9০-৯\s\-()]+$/.test(t) && digits >= 7 ? '' : 'Use digits, spaces, + or - only (at least 7 digits).';
+    },
+    long: v => (v.length > 700 ? 'Long text shrinks the page to fit one A4 sheet. Shorter reads better.' : '')
+  };
+  function runChecks() {
+    $$('[data-check]').forEach(el => {
+      const msg = CHECKS[el.dataset.check](el.value || '');
+      const label = el.closest('label');
+      const hint = label && label.querySelector('.vhint');
+      if (hint) { hint.textContent = msg; hint.hidden = !msg; }
+      el.setAttribute('aria-invalid', String(!!msg));
+    });
+  }
+
+  /* ---- 7.19h Dark mode for the editor only (the A4 paper is never inverted) ---- */
+  function setDark(on) {
+    document.documentElement.classList.toggle('ui-dark', on);
+    const b = $('#dark-btn');
+    b.setAttribute('aria-pressed', String(on));
+    b.querySelector('span').textContent = on ? 'Light' : 'Dark';
+    try { store.set(UI_KEY, on ? 'dark' : 'light'); } catch (e) { /* not remembered if storage is blocked */ }
+  }
+
+  /* ---- 7.19i Keyboard: Ctrl/Cmd+Z undoes the last change (native text undo stays inside fields) ---- */
+  document.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.key.toLowerCase() !== 'z') return;
+    if (e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable]')) return;
+    if (document.querySelector('dialog[open]')) return;
+    e.preventDefault();
+    undo();
+  });
+
+  /* =========================================================================
+     7.20  A4 PAGES — real 210 x 297 mm pages, automatic flow, scale-to-fit preview
+     The layout is measured once at full A4 width. Each page then shows a clipped
+     window onto that layout, so every page is exactly A4 and nothing is cut in half.
+     ========================================================================= */
+  const PAGE_W_MM = 210, PAGE_H_MM = 297;
+  const MARGINS = { narrow: 12, normal: 13.5, wide: 15 };     // safe inner margin in mm (12–15 mm)
+  const MARGIN_LABEL = { narrow: 'Narrow · 12 mm', normal: 'Normal · 13.5 mm', wide: 'Wide · 15 mm' };
+  const paper = () => $('#paper-stack .paper');              // first page
+
+  function pageVars(d, fit) {
+    return {
+      ...themeVars(d, state.custom),
+      '--fs': (d.fs / 100 * fit).toFixed(3),
+      '--sp': (d.sp / 100 * fit).toFixed(3),
+      '--margin': MARGINS[d.margin] + 'mm'
+    };
+  }
+  const applyVars = (el, vars) => Object.entries(vars).forEach(([k, v]) => el.style.setProperty(k, v));
+  const bodyHtml = d => docHtml(state.mode, state[state.mode], state.layout[state.mode], cur().photo, d.photo);
+
+  // Step 1 — measure the flowing layout at true A4 width (hidden, unscaled)
+  function measureLayout(d, fit) {
+    const m = $('#paper-measure');
+    m.className = paperClass(d) + ' measure';
+    m.innerHTML = bodyHtml(d);
+    applyVars(m, pageVars(d, fit));
+    const W = m.offsetWidth;                                  // 210 mm in CSS px
+    const mm = W / PAGE_W_MM;
+    const box = m.getBoundingClientRect();
+    const M = MARGINS[d.margin] * mm;
+    // A unit's extent is the box of its own text and images (not a stretched grid cell)
+    const units = [...m.querySelectorAll('.hd, .pic, .sec, .entry, .fact')].map(el => {
+      let t = Infinity, b = -Infinity;
+      el.querySelectorAll('*').forEach(e => {
+        if (e.children.length || !(e.textContent.trim() !== '' || e.tagName === 'IMG')) return;
+        const r = e.getBoundingClientRect();
+        if (!r.height) return;
+        t = Math.min(t, r.top); b = Math.max(b, r.bottom);
+      });
+      return t === Infinity ? null : { t: t - box.top, b: b - box.top, sec: el.classList.contains('sec') };
+    }).filter(u => u && u.b > u.t + 0.5);
+    const leaves = [...m.querySelectorAll('.doc *')]
+      .filter(e => e.children.length === 0 && (e.textContent.trim() !== '' || e.tagName === 'IMG'));
+    const inside = leaves.every(e => {
+      const r = e.getBoundingClientRect();
+      return !(r.width || r.height) || (r.left - box.left >= M - 2 && r.right - box.left <= W - M + 2);
+    });
+    return { mm, W, PAGE: PAGE_H_MM * mm, M, units, inside, contentBottom: Math.max(0, ...units.map(u => u.b)) };
+  }
+
+  // Step 2 — choose where each page starts. A page may only start at the top edge of a
+  // section, header, photo, entry or fact, so nothing is cut in half. Returns the start y of each page.
+  function paginate(g) {
+    const starts = [0];
+    let forced = false;
+    // A section taller than a page may be split between its entries, so it does not block cuts
+    const longSec = u => u.sec && u.b - u.t > g.PAGE - 2 * g.M;
+    const straddles = (c, set) => set.some(u => !longSec(u) && u.t < c - 0.5 && u.b > c + 0.5);
+    const pick = (cands, lo, hi) => [...new Set(cands.map(u => u.t))]
+      .filter(c => c > lo && c <= hi).sort((a, b) => b - a)
+      .find(c => !straddles(c, g.units));
+    for (let i = 0; i < 100; i++) {
+      const D = starts[i];
+      const hi = D + (i === 0 ? g.PAGE - g.M : g.PAGE - 2 * g.M);   // last usable y of this page
+      if (g.contentBottom <= hi + 0.5) break;
+      let cut = pick(g.units, D + 0.5, hi);                          // whole sections first
+      if (cut === undefined) cut = pick(g.units.filter(u => !u.sec), D + 0.5, hi);   // a long section splits between its entries (same straddle rules)
+      if (cut === undefined) { cut = hi; forced = true; }            // a single item taller than a page
+      starts.push(cut);
+    }
+    return { starts, forced };
+  }
+
+  // Step 3 — build every page from the same layout and show them
+  function renderAll() {
+    const d = state.design;
+    let fit = 1;
+    let g = measureLayout(d, fit);
+    if (d.fit) {                                                     // optional: shrink to one page
+      while (fit > 0.4 && (g.contentBottom > g.PAGE - g.M + 0.5 || !g.inside)) {
+        fit = Math.round((fit - 0.03) * 100) / 100;
+        g = measureLayout(d, fit);
+      }
+    }
+    const { starts, forced } = d.fit ? { starts: [0], forced: false } : paginate(g);
+    const body = bodyHtml(d), cls = paperClass(d), n = starts.length;
+    // Each page shows exactly the content from its own start up to the next page's start,
+    // so nothing is printed twice and nothing is cut at a unit's edge.
+    const clipH = i => (i + 1 < n ? (starts[i + 1] - starts[i]) : null);
+    $('#paper-stack').innerHTML = starts.map((D, i) => `
+      <div class="page-frame">
+        <div class="page-label">Page ${i + 1} / ${n}</div>
+        <div class="page-box">
+          <div class="${cls}"${i === 0 ? ' id="paper"' : ''}>
+            <div class="clip${i ? ' cont' : ''}"${clipH(i) !== null ? ` style="height:${clipH(i).toFixed(2)}px"` : ''}>${body.replace('<div class="doc">', `<div class="doc" style="--doc-top:${(-D).toFixed(2)}px">`)}</div>
+          </div>
+        </div>
+      </div>`).join('');
+    const vars = pageVars(d, fit);
+    $$('#paper-stack .paper').forEach(p => applyVars(p, vars));
+
+    const note = $('#overflow-note');
+    const fitsOne = g.contentBottom <= g.PAGE - g.M + 0.5;
+    note.hidden = false;
+    if (d.fit && !fitsOne) note.textContent = '⚠️ This is too long for one A4 page even at the smallest size. Turn off “Fit everything on one page” to flow onto more pages.';
+    else if (d.fit && fit < 1) note.textContent = `ℹ️ Text reduced to ${Math.round(fit * 100)}% to fit one A4 page.`;
+    else if (n > 1) note.textContent = `ℹ️ Content flows onto ${n} A4 pages. Sections stay whole across page breaks${forced ? ', except one item taller than a page' : ''}.`;
+    else note.hidden = true;
+    layoutPreview();
+  }
+
+  // Scale the true-size pages to the space available (transform: scale, no layout change)
+  function layoutPreview() {
+    const wrap = $('.preview-wrap');
+    const pageW = PAGE_W_MM * PX_PER_MM;
+    const avail = wrap ? wrap.clientWidth : 0;
+    const s = avail > 0 ? Math.min(1, avail / pageW) : 1;
+    $('#paper-stack').style.setProperty('--s', s.toFixed(4));
+  }
+
+  // Gallery thumbnails: scale each miniature to its card width
+  function sizeThumbs() {
+    $$('#gal-grid .thumb').forEach(t => {
+      if (t.clientWidth) t.style.setProperty('--ts', (t.clientWidth / (PAGE_W_MM * PX_PER_MM)).toFixed(4));
+    });
+  }
+
+  /* =========================================================================
+     7.18  INIT
+     ========================================================================= */
+  function init() {
+    populateControls();
+    buildGallery();
+    setDark(store.get(UI_KEY) === 'dark');
+    setView('edit');
+    const saved = restoreSaved();
+    if (saved !== 'ok') { syncControls(); setMode('cv'); }
+    if (saved === 'ok') toast('Restored your last session', { ms: 2500 });
+    if (saved === 'bad') toast('Your saved draft could not be read, so a fresh form was opened.', { kind: 'error', ms: 6000 });
+    resetHistory();
+    runChecks();
+    layoutPreview();
+    sizeThumbs();
+    window.addEventListener('resize', () => { layoutPreview(); sizeThumbs(); });
+    if (window.ResizeObserver) new ResizeObserver(() => layoutPreview()).observe($('.preview-wrap'));
+    if (document.fonts) document.fonts.addEventListener('loadingdone', () => renderAll());   // re-paginate once fonts arrive
+    setSaveStatus(storage() ? 'Autosaves in this browser' : 'Autosave is off in this browser · use Export JSON to keep a copy');
+  }
+  init();
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4d6a0bf3a69f5a8',t:'MTc5MjQ4NDY4NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
